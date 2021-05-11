@@ -43,11 +43,10 @@ Page({
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
 		that.getEqList();
-		var obj = wx.getLaunchOptionsSync(),
-			ids = obj.query.ids,
-			type = obj.query.type,
-			facilityId = obj.query.facilityId;
-		console.log(obj.query);
+		var ids = options.ids,
+			type = options.type,
+			facilityId = options.facilityId;
+		console.log(options);
 		that.setData({
 			ids: ids,
 			type: type,

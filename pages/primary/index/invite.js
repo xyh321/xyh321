@@ -27,12 +27,11 @@ Page({
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
 
-		var obj = wx.getLaunchOptionsSync(),
-			ids = obj.query.ids;
+		var ids = options.ids;
 		that.setData({
 			uid: ids
-		})
-		console.log('——启动小程序的 query 参数:', obj.query);
+		});
+		console.log(options);
 		that.invitation();
 	},
 

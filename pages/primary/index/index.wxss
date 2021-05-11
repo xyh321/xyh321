@@ -52,7 +52,7 @@ navigator {
 
 .technicist {
 	width: 710rpx;
-	margin: 0rpx 20rpx 20rpx 20rpx;
+	margin: 20rpx 20rpx 20rpx 20rpx;
 }
 
 .comTitle {

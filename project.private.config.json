@@ -147,6 +147,7 @@
         {
           "name": "普通用户-邀请成为技术员",
           "pathName": "pages/primary/index/invite",
+          "query": "",
           "scene": null
         }
       ]

@@ -16,12 +16,12 @@
 		<!-- 轮播图 /-->
 		<!-- content -->
 		<view class="comRegister">
-			<image mode="widthFix" src="../../../icons/banner.png" class="register" bindtap="toRegister"></image>
+			<!-- <image mode="widthFix" src="../../../icons/banner.png" class="register" bindtap="toRegister"></image>
 			<view class="comText pa" bindtap="toRegister">
 				<view class="textOne">企业注册</view>
 				<view class="textTwo">Registered</view>
 				<view class="textThree">申请入驻平台</view>
-			</view>
+			</view> -->
 			<image mode="widthFix" src="../../../icons/jishu.png" class="technicist" bindtap="alert"></image>
 			<view class="comText pa" bindtap="alert">
 				<view class="textOne">技术员</view>

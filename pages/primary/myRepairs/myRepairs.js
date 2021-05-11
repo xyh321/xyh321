@@ -15,7 +15,7 @@ Page({
 
 		length:"",
 		pageTitle: '我的报修',
-		isShow: true,
+		isShow: false,
 		statusBarHeight: app.globalData.statusBarHeight,
 		//顶部tabs			2是技术员确认接单 6是用户确认完成
 		statusList: [{

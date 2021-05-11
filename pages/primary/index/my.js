@@ -20,7 +20,11 @@ Page({
 
 		wx.scanCode({ //扫描API
 			success: function(res) {
-				console.log(res); //输出回调信息
+				console.log(res.path); //输出回调信息
+				var path = res.path;
+				wx.navigateTo({
+					url: '/' + path
+				})
 				_this.setData({
 					qRCodeMsg: res.result
 				});

@@ -9,7 +9,7 @@ Page({
 		pageType: 1,
 		pageActive: 3,
 		pageTitle: '意见反馈',
-		isShow: true,
+		isShow: false,
 		statusBarHeight: app.globalData.statusBarHeight,
 
 		textarea: '',

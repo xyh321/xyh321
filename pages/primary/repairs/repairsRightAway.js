@@ -14,7 +14,7 @@ Page({
 
 		index: 0,
 		//报修分类
-		queryType: '',
+		bxType: '',
 		ids: '',
 
 		unit: "",
@@ -53,24 +53,17 @@ Page({
 			titleHeight: statusBarHeight + 6,
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
+		// console.log(options);
 		var obj = wx.getLaunchOptionsSync(),
-			ids = obj.query.ids,
-			type = obj.query.type;
-		that.data.queryArr.push(ids);
-		that.data.queryArr.push(type);
-		console.log('——启动小程序的 query 参数:', obj.query);
-		// if (ids) {
-		// console.log('——启动小程序的 query 参数:', obj);
-		// wx.setStorageSync('ids', ids);
-		// wx.setStorageSync('type', type);
-		// };
-		// var type = that.data.type;
+			ids = options.ids,
+			type = options.type;
 		that.setData({
-			queryType: type,
+			bxType: type,
 			ids: ids
 		});
 		this.getUnit();
 	},
+	
 	inputs: function(e) {
 		console.log(e);
 	},
@@ -180,9 +173,9 @@ Page({
 		let that = this;
 		var token = wx.getStorageSync('token'),
 
-			type = that.data.queryType,
+			type = that.data.type,
 			uid = that.data.ids,
-			bxType = that.data.queryType,
+			bxType = that.data.bxType,
 
 			unit = that.data.unit,
 			section = that.data.apartment,
@@ -197,7 +190,7 @@ Page({
 
 			path = that.data.imgArr;
 		_cori.default.request('POST', 'Technician/addGeneral', token, {
-			type: type,
+			type: bxType,
 			uid: uid,
 			bxType: bxType,
 
@@ -213,7 +206,7 @@ Page({
 			degree: degree,
 			path: path
 		}).then(function(res) {
-			console.log(res.data.msg);
+			console.log(res);
 			if(res.data.code==200){
 				wx.navigateTo({
 					url: '../myRepairs/myRepairs',
