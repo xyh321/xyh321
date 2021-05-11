@@ -1,0 +1,37 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view style="margin: {{titleHeight1}}px 0 80px 0;">
+	<view class="feedback">
+		<view class="top">
+			<image src="../../../icons/pencil.png" mode="widthFix" style="width: 24rpx;height: 24rpx;"></image>
+			<view class="text">
+				您的意见有助于企业发展，技术人员会认真改善！
+			</view>
+		</view>
+		<view class="suggest">
+			<view class="title">
+				意见与建议反馈
+			</view>
+			<textarea name="" id="" cols="30" rows="10" bindinput="textarea" placeholder="请认真填写您的意见与建议反馈内容"
+				placeholder-style="font-size: 24rpx;font-family: PingFang SC;font-weight: 400;line-height: 20rpx;color: #C1C1C1;" value="{{textarea}}"></textarea>
+			<view class="name fc">
+				<view>姓名</view>
+				<input type="text" bindinput="name" value="{{name}}" />
+			</view>
+			<view class="phone fc">
+				<view>电话</view>
+				<input type="number" bindinput="phone" value="{{phone}}" />
+			</view>
+		</view>
+		<view class="bottom">
+			<view class="delete" bindtap="clear">
+				删除
+			</view>
+			<view class="submit" bindtap="submit">
+				提交反馈
+			</view>
+		</view>
+	</view>
+</view>
+
+<component-footer page-type="{{pageType}}" page-active="{{pageActive}}"></component-footer>

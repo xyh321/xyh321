@@ -1,0 +1,63 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view class="bb p10 bg_fff" style="margin: {{titleHeight1}}px 0 20px 0;">
+  <view class="cell at_c">
+    <view class="title">维修日期<text class="must">*</text></view>
+    <view class="flex">
+      <image class="icon1 mr5" src="../../../resource/technology/date.png"></image>
+      <picker mode="date" value="{{repaireTime}}" bindchange="bindDateChange">
+        <input type="text" placeholder="请选择维修日期" value="{{repaireTime}}" disabled></input>
+      </picker>
+    </view>
+  </view>
+  <view class="cell at_c">
+    <view class="title">维修耗时<text class="must">*</text></view>
+    <input type="digit" placeholder="请输入维修耗时" bindinput="spendtime"></input>
+  </view>
+  <view class="cell">
+    <view class="title">维修描述<text class="must">*</text></view>
+    <textarea name="" id="" cols="30" rows="10" placeholder="请输入维修内容" bindinput="desc"></textarea>
+  </view>
+  <view class="cell">
+    <view class="title">维修结果<text class="must">*</text></view>
+    <view class="flex at_c">
+      <view class="flex at_c mr20" bindtap="changeRepair" data-value="1">
+        <image class="icon3 mr10" src="../../../resource/technology/{{result==1?'selected':'select'}}.png"></image>
+        故障已解决
+      </view>
+      <view class="flex at_c" bindtap="changeRepair" data-value="2">
+        <image class="icon3 mr10" src="../../../resource/technology/{{result==2?'selected':'select'}}.png"></image>
+        故障未解决
+      </view>
+    </view>
+  </view>
+  <view class="cell at_c">
+    <view class="title">技术员<text class="must">*</text></view>
+    <input type="text" placeholder="请输入报修姓名" bindinput="name"></input>
+  </view>
+  <view class="cell at_c">
+    <view class="title">联系方式<text class="must">*</text></view>
+    <input type="number" placeholder="请输入报修电话" maxlength="11" bindinput="mobile"></input>
+  </view>
+  <view class="cell at_c">
+    <view class="title">签到地址<text class="must">*</text></view>
+    <view class="flex at_c address" bindtap="getAddress">
+      <image wx:if="{{!address}}" class="icon2" src="../../../resource/technology/address.png"></image>
+      <view wx:if="{{address}}">{{address}} <text style="color: #ccc;">(点击重新获取)</text> </view>
+    </view>
+  </view>
+  <view class="cell fd_c" style="border-bottom: 0;">
+    <view class="title">现场拍照</view>
+    <view class="flex jc_s at_s fw_w mt10" style="width: 100%;">
+      <view wx:for="{{path}}" wx:key="index" class="evaluateImg">
+        <view class="goods_cell_img" style="background-image: url({{cori_root}}{{item}});"></view>
+        <view class="shanchu" data-index="{{index}}" bindtap="shanchu">✖</view>
+      </view>
+      <image bindtap="oneImgUpload" class="evaluateImg" src="../../../resource/technology/upimg.png" mode="widthFix">
+      </image>
+    </view>
+  </view>
+</view>
+<view class="flex jc_c">
+  <view class="cori_btn2" bindtap="addFeedback">确认提交</view>
+</view>

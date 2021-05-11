@@ -1,0 +1,5 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view class="bb p10" style="margin: {{titleHeight1}}px 0 80px 0;">
+  <rich-text nodes="{{nodes}}"></rich-text>
+</view>

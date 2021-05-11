@@ -1,0 +1,41 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view style="margin: {{titleHeight1}}px 0 80px 0;">
+	<view class="content">
+		<view class="appraise">
+			<view class="fc">
+				<view class="deal">处理时效</view>
+				<van-rate value="{{ value }}" size="{{ 25 }}" gutter="{{10}}" color="#FF6602" void-color="#eee"
+					void-icon="star" bind:change="onChange" />
+			</view>
+			<view class="fc mar">
+				<view class="deal">服务态度</view>
+				<van-rate value="{{ value2 }}" size="{{ 25 }}" gutter="{{10}}" color="#FF6602" void-color="#eee"
+					void-icon="star" bind:change="onChange2" />
+			</view>
+			<view class="fc border mar">
+				<view class="deal">技术水平</view>
+				<van-rate value="{{ value3 }}" size="{{ 25 }}" gutter="{{10}}" color="#FF6602" void-color="#eee"
+					void-icon="star" bind:change="onChange3" />
+			</view>
+		</view>
+
+		<view class="title tc">
+			本次报修服务哪些让你印象深刻
+			<view class="choose">
+				<block wx:for="{{List}}" wx:key="index">
+					<view class="{{item.checked?'check':'list'}}" bindtap="choose" data-index="{{index}}"
+						data-name="{{item.name}}">{{item.name}}</view>
+				</block>
+			</view>
+		</view>
+		<view class="textAppraise">
+			<view>服务评价</view>
+			<textarea name="" id="" cols="30" rows="10" bindinput="textarea" placeholder="请输入评价"
+				placeholder-style="font-size: 24rpx;font-family: PingFang SC;font-weight: 400;line-height: 33rpx;color: #C1C1C1;"></textarea>
+		</view>
+	</view>
+	<view class="submit" bindtap="appraise">评价</view>
+</view>
+
+<component-footer page-type="{{pageType}}" page-active="{{pageActive}}"></component-footer>

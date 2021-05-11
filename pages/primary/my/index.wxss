@@ -1,0 +1,47 @@
+page {
+  background-color: #F7F7F7;
+}
+
+.cell_group {
+  padding: 10px 20px;
+  margin-bottom: 15px;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 22rpx;
+  flex: 1;
+}
+
+.cell image {
+  width: 50rpx;
+}
+
+.cell text {
+  margin-top: 7px;
+}
+
+.headImg {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.user_name {
+  font-size: 32rpx;
+  width: 400rpx;
+}
+
+.cori_btn1 {
+  position: absolute;
+  right: 0;
+  font-size: 24rpx;
+  border-color: #FF4F1B;
+  color: #FF4F1B;
+  padding: 3px 10px;
+}

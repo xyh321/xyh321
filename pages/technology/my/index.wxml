@@ -1,0 +1,37 @@
+<component-title is-home="{{isHome}}" is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+<component-login is-show-login="{{isShowLogin}}" bind:changeNaviIndex="onLoad"></component-login>
+
+<view style="margin: {{titleHeight1}}px 0 80px 0;">
+  <image class="pa" src="../../../resource/bg_title1.png" mode="widthFix" style="width: 100%;z-index: -1;"></image>
+  <view class="bb p15">
+    <view class="flex at_c bb pb30 pr">
+      <image class="headImg" src="{{avatar}}" mode="aspectFill"></image>
+      <view style="color: #fff;">
+        <view class="user_name hang1" bindtap="getUserInfo">{{uid?nickname + '  ' + mobile:'授权登录'}}</view>
+      </view>
+      <view wx:if="{{uid}}" class="flex at_c pa status" bindtap="changeStatus">
+        {{status==1?'在线':'离线'}}
+        <view class=" ml5 star-three"></view>
+      </view>
+    </view>
+    <view class="bg_fff radius5" style="z-index: 1;box-shadow: #cacaca 0px 0px 2px 1px;">
+      <navigator class="flex jc_b at_c bb p20" url="/pages/technology/my/problem">
+        <view class="flex at_c">
+          <image src="../../../resource/problem.png" style="width: 50rpx;height: 50rpx;"></image>
+          <view class="ml10">常见问题</view>
+        </view>
+        <view class="jiantou2"></view>
+      </navigator>
+      <button open-type="contact" class="flex jc_b at_c bb"
+        style="font-weight: normal;background-color: transparent;margin: 0 !important;padding: 20px !important;width: 100% !important;">
+        <view class="flex at_c">
+          <image src="../../../resource/kefu.png" style="width: 50rpx;height: 50rpx;"></image>
+          <view class="ml10">联系客服</view>
+        </view>
+        <view class="jiantou2"></view>
+      </button>
+    </view>
+  </view>
+</view>
+
+<component-footer page-type="{{pageType}}" page-active="{{pageActive}}"></component-footer>

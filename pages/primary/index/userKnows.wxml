@@ -1,0 +1,5 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view class="userKnows">
+	<rich-text nodes="{{text}}"></rich-text>
+</view>

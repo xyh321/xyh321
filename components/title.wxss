@@ -1,0 +1,55 @@
+@import '../app.wxss';
+
+.page_top {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 10px;
+  background: linear-gradient(to right, #3BB5F8, #0C87E5);
+}
+
+.page_title {
+  height: 32px;
+  line-height: 32px;
+  color: #fff;
+}
+
+.yuanquan {
+  position: fixed;
+  z-index: 999;
+  left: 10px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+}
+
+.jiantou:before {
+  content: " ";
+  display: inline-block;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  height: 0.5rem;
+  width: 0.5rem;
+  border-width: 0 0 2px 2px;
+  border-color: #fff;
+  border-style: solid;
+  position: relative;
+  top: -2px;
+  left: 2px;
+}
+
+.home {
+  width: 50rpx;
+  height: 50rpx;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  padding: 2px;
+}

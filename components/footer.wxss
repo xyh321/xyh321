@@ -1,0 +1,49 @@
+@import '../app.wxss';
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  /* box-shadow: #e2e2e2 0px 0px 2px 1px; */
+}
+
+.img_view {
+  width: 50rpx;
+  height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.text {
+  margin-top: 5px;
+  font-size: 20rpx;
+}
+
+.marker {
+  font-size: 20rpx;
+  background-color: #FF2CE3;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+}
+
+.scanning {
+  width: 120rpx;
+  height: 120rpx;
+  flex-shrink: 0;
+  position: relative;
+  top: -60rpx;
+  padding: 10px;
+  background: #fff;
+  border-radius: 50%;
+}

@@ -1,0 +1,155 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "普通用户-我的报修",
+          "pathName": "pages/primary/myRepairs/myRepairs",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-我的报修评价",
+          "pathName": "pages/primary/myRepairs/appraise",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-立刻报修",
+          "pathName": "pages/primary/repairs/repairsRightAway",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-设备报修管理",
+          "pathName": "pages/primary/repairs/repairsManage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-意见反馈",
+          "pathName": "pages/primary/my/feedback",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-注册",
+          "pathName": "pages/primary/index/register",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-报修进度",
+          "pathName": "pages/primary/myRepairs/step",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-我的",
+          "pathName": "pages/primary/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "技术员-我的",
+          "pathName": "pages/technology/my/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "技术员-常见问题",
+          "pathName": "pages/technology/my/problem",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "技术员-常见问题的下一页",
+          "pathName": "pages/technology/my/problemInfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "技术员-统计分析",
+          "pathName": "pages/technology/patrolTask/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "技术员-任务管理",
+          "pathName": "pages/technology/task/administration",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "技术员-选择技术员",
+          "pathName": "pages/technology/task/selectTechnician",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "技术员-维修反馈",
+          "pathName": "pages/technology/task/feedback",
+          "query": "oid=34",
+          "scene": null
+        },
+        {
+          "name": "技术员-报修进度",
+          "pathName": "pages/technology/task/repairProgress",
+          "query": "oid=33",
+          "scene": null
+        },
+        {
+          "name": "技术员-抢单",
+          "pathName": "pages/technology/grabbingOrders/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "技术员-巡检任务",
+          "pathName": "pages/technology/inspection/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "技术员-选择配件",
+          "pathName": "pages/technology/task/chooseParts",
+          "query": "code=2021050709283446&oid=34",
+          "scene": null
+        },
+        {
+          "name": "普通用户-完善企业信息",
+          "pathName": "pages/primary/index/completeRegister",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-用户须知",
+          "pathName": "pages/primary/index/userKnows",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-二维码扫描",
+          "pathName": "pages/primary/index/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "普通用户-邀请成为技术员",
+          "pathName": "pages/primary/index/invite",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

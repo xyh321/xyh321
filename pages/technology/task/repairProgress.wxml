@@ -1,0 +1,94 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view class="bb p20 bg_fff" style="margin: {{titleHeight1}}px 0 150px 0;">
+  <view>
+    <view class="step step_active" wx:for="{{schedule}}" wx:key="index">
+      <view class="sign sign_active">{{index + 1}}</view>
+      <view class="info">
+        <text>
+          <block wx:if="{{item.status==1}}">待分配</block>
+          <block wx:if="{{item.status==2}}">待确认</block>
+          <block wx:if="{{item.status==3}}">转单</block>
+          <block wx:if="{{item.status==4}}">处理中</block>
+          <block wx:if="{{item.status==5}}">配件中</block>
+          <block wx:if="{{item.status==6}}">待确认</block>
+          <block wx:if="{{item.status==7}}">完成</block>
+          <block wx:if="{{item.status==8}}">撤销</block>
+        </text>
+        <text>[{{item.operator}}]</text>
+        <text>{{item.createTime}}</text>
+      </view>
+      <!-- <view class="info mt10">维修完成，故障修复</view> -->
+    </view>
+  </view>
+  <view class="radius5" style="font-size: 28rpx;box-shadow: #cacaca 0px 0px 2px 1px;" wx:if="{{feedback.length}}">
+    <view class="bb p15" style="border-bottom: 1px solid #f1f1f1;">
+      <view class="flex mb15">
+        <view class="mr20" style="color: #666666;">处理时效</view>
+        <view class="flex">
+          <image wx:for="{{feedback.time_star}}" wx:key="index" class="star"
+            src="../../../resource/technology/xing-active.png" mode="widthFix">
+          </image>
+          <image wx:for="{{5 - feedback.time_star}}" wx:key="index" class="star"
+            src="../../../resource/technology/xing.png" mode="widthFix">
+          </image>
+        </view>
+        <view class="evaluate">
+          <block wx:if="{{feedback.time_star==5}}">非常好</block>
+          <block wx:if="{{feedback.time_star==4}}">很好</block>
+          <block wx:if="{{feedback.time_star==3}}">不错</block>
+          <block wx:if="{{feedback.time_star==2}}">一般</block>
+          <block wx:if="{{feedback.time_star==1}}">差</block>
+        </view>
+      </view>
+      <view class="flex mb15">
+        <view class="mr20" style="color: #666666;">服务态度</view>
+        <view class="flex">
+          <image wx:for="{{feedback.atti_star}}" wx:key="index" class="star"
+            src="../../../resource/technology/xing-active.png" mode="widthFix">
+          </image>
+          <image wx:for="{{5 - feedback.atti_star}}" wx:key="index" class="star"
+            src="../../../resource/technology/xing.png" mode="widthFix">
+          </image>
+        </view>
+        <view class="evaluate">
+          <block wx:if="{{feedback.atti_star==5}}">非常好</block>
+          <block wx:if="{{feedback.atti_star==4}}">很好</block>
+          <block wx:if="{{feedback.atti_star==3}}">不错</block>
+          <block wx:if="{{feedback.atti_star==2}}">一般</block>
+          <block wx:if="{{feedback.atti_star==1}}">差</block>
+        </view>
+      </view>
+      <view class="flex">
+        <view class="mr20" style="color: #666666;">技术水平</view>
+        <view class="flex">
+          <image wx:for="{{feedback.effect_star}}" wx:key="index" class="star"
+            src="../../../resource/technology/xing-active.png" mode="widthFix">
+          </image>
+          <image wx:for="{{5 - feedback.effect_star}}" wx:key="index" class="star"
+            src="../../../resource/technology/xing.png" mode="widthFix">
+          </image>
+        </view>
+        <view class="evaluate">
+          <block wx:if="{{feedback.effect_star==5}}">非常好</block>
+          <block wx:if="{{feedback.effect_star==4}}">很好</block>
+          <block wx:if="{{feedback.effect_star==3}}">不错</block>
+          <block wx:if="{{feedback.effect_star==2}}">一般</block>
+          <block wx:if="{{feedback.effect_star==1}}">差</block>
+        </view>
+      </view>
+    </view>
+    <view class="flex jc_c bb p15 fw_w pt25" style="border-bottom: 1px solid #f1f1f1;">
+      <view class="task_btn2 task_active" wx:for="{{wordArr}}">{{item}}</view>
+      <!-- <view class="task_btn2">完美解决</view>
+      <view class="task_btn2">热情耐心</view>
+      <view class="task_btn2">热情耐心</view>
+      <view class="task_btn2">热情耐心</view>
+      <view class="task_btn2">热情耐心</view> -->
+    </view>
+    <view class="bb p15" style="border-bottom: 1px solid #f1f1f1;">
+      <view>服务评价</view>
+      <textarea name="" id="" cols="30" rows="10" disabled value="{{feedback.cont}}"></textarea>
+    </view>
+  </view>
+</view>

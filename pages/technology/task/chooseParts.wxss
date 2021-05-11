@@ -1,0 +1,14 @@
+@import "./feedback.wxss";
+
+.parts {
+  width: calc(100% - 160rpx) !important;
+}
+
+.nums {
+  border: 1px solid #f1f1f1;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  width: 140rpx;
+  text-align: center;
+}

@@ -1,0 +1,9 @@
+<navigator wx:if="{{isShow}}" open-type="navigateBack" class="yuanquan" style="top: {{titleHeight}}px;">
+  <view class="jiantou"></view>
+</navigator>
+<view bindtap="toHome" wx:if="{{isHome}}" class="yuanquan" style="top: {{titleHeight}}px;">
+  <image class="home" src="../resource/technology/home.png"></image>
+</view>
+<view class="page_top" style="padding-top: {{titleHeight}}px;">
+  <view class="page_title">{{pageTitle}}</view>
+</view>

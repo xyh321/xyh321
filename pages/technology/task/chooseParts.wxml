@@ -1,0 +1,44 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view class="bb p10 bg_fff" style="margin: {{titleHeight1}}px 0 20px 0;">
+  <!-- <view class="cell at_c">
+    <view class="title">申请单号</view>
+    <input type="text" disabled placeholder="系统自动生成"></input>
+  </view> -->
+  <view class="cell at_c">
+    <view class="title">工单编号<text class="must">*</text></view>
+    <input type="digit" placeholder="请输入工单编号" disabled value="{{code}}"></input>
+  </view>
+  <view class="cell at_c">
+    <view class="title">提交人<text class="must">*</text></view>
+    <input type="text" placeholder="请输入姓名" bindinput="claimant"></input>
+  </view>
+  <view class="cell at_c">
+    <view class="title">提交部门<text class="must">*</text></view>
+    <input type="text" placeholder="请输入提交部门" bindinput="section"></input>
+  </view>
+  <view class="cell">
+    <view class="title">配件更换<text class="must">*</text></view>
+    <view class="pr" style="width: calc(100% - 150rpx);">
+      <image bindtap="addParts" class="icon1 pa" src="../../../resource/technology/add.png" mode="widthFix"
+        style="right: 10rpx;top: 8rpx;z-index: 999;"></image>
+      <view class="pr partsView" wx:for="{{parts}}" wx:key="index">
+        
+        <view class="flex at_c">
+          <picker class="parts" bindchange="partsChange" data-index="{{index}}" value="{{item.idx}}"
+            range="{{partsArray}}" range-key="name">
+            <input type="text" placeholder="请选择配件" value="{{partsArray[item.idx].name}}" disabled></input>
+          </picker>
+          <text class="ml5 mr5">*</text>
+          <input class="nums" type="text" data-index="{{index}}" value="{{item.nums}}" placeholder="配件数量" bindinput="changeNums"></input>
+        </view>
+
+        <image bindtap="delParts" data-index="{{index}}" class="icon1 pa" src="../../../resource/technology/del.png"
+          mode="widthFix" style="right: -60rpx;top: 8rpx;"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="flex jc_c">
+  <view class="cori_btn2" bindtap="addConsumeApply">确认提交</view>
+</view>

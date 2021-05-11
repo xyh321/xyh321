@@ -1,0 +1,117 @@
+page {
+	background-color: #F1F1F1;
+}
+
+.content {
+	width: 710rpx;
+	background-color: #fff;
+	margin: 0rpx 20rpx 80rpx 20rpx;
+	border-radius: 12rpx;
+	margin-top: 200rpx;
+}
+
+.appraise {
+	padding: 40rpx 20rpx;
+	border-bottom: 1px solid #F1F1F1;
+}
+
+.deal {
+	font-size: 28rpx;
+	font-family: PingFang SC;
+	font-weight: bold;
+	line-height: 40rpx;
+	color: #666666;
+}
+
+van-rate {
+	margin-left: 30rpx;
+}
+
+.mar {
+	margin-top: 20rpx;
+}
+
+.border {
+	padding-bottom: 20rpx;
+}
+
+.title {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 33rpx;
+	color: #202020;
+	margin-top: 30rpx;
+	padding: 0rpx 20rpx;
+	border-bottom: 1px solid #F1F1F1;
+}
+
+.choose {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding-bottom: 50rpx;
+}
+
+.list {
+	width: 96rpx;
+	height: 20rpx;
+	background-color: #F1F1F1;
+	padding: 15rpx 20rpx;
+	border-radius: 12rpx;
+	margin-top: 20rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.check {
+	width: 96rpx;
+	height: 20rpx;
+	background-color: #158FE8;
+	color: #fff;
+	padding: 15rpx 20rpx;
+	border-radius: 12rpx;
+	margin-top: 20rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.textAppraise {
+	margin-top: 20rpx;
+	padding: 0rpx 20rpx 20rpx 20rpx;
+}
+
+.textAppraise view {
+	font-size: 28rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 40rpx;
+	color: #202020;
+}
+
+.textAppraise textarea {
+	width: 590rpx;
+	height: 200rpx;
+	margin: 30rpx 20rpx;
+	border: 1px solid #E3E3E3;
+	text-indent: 1em;
+	padding-top: 20rpx;
+	padding-right: 40rpx;
+	font-size: 24rpx;
+	border-radius: 8rpx;
+}
+
+.submit {
+	width: 650rpx;
+	height: 90rpx;
+	border-radius: 50rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 50rpx;
+	background-color: #158FE8;
+	color: #fff;
+}

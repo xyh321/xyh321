@@ -1,0 +1,16 @@
+@import "../task/administration.wxss";
+
+.tips {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.icon {
+  width: 66rpx;
+}

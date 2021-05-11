@@ -1,0 +1,49 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view style="margin: {{titleHeight1}}px 0 200rpx 0;">
+	<view class="index">
+		<!-- 轮播图 -->
+		<view class="banner">
+			<swiper autoplay indicator-dots circular interval="2000" indicator-color="#C0C1C1"
+				indicator-active-color="#ffffff">
+				<swiper-item wx:for="{{bannerList}}" wx:key="id">
+					<navigator>
+						<image mode="aspectFill" src="{{item.image}}"></image>
+					</navigator>
+				</swiper-item>
+			</swiper>
+		</view>
+		<!-- 轮播图 /-->
+		<!-- content -->
+		<view class="comRegister">
+			<image mode="widthFix" src="../../../icons/banner.png" class="register" bindtap="toRegister"></image>
+			<view class="comText pa" bindtap="toRegister">
+				<view class="textOne">企业注册</view>
+				<view class="textTwo">Registered</view>
+				<view class="textThree">申请入驻平台</view>
+			</view>
+			<image mode="widthFix" src="../../../icons/jishu.png" class="technicist" bindtap="alert"></image>
+			<view class="comText pa" bindtap="alert">
+				<view class="textOne">技术员</view>
+				<view class="textTwo">Technician</view>
+				<view class="textThree">报修工单接单</view>
+			</view>
+		</view>
+		<!-- content / -->
+		<!-- 企业列表 -->
+		<view class="companyShow">
+			<view class="comTitle">企业展示</view>
+			<view class="company">
+				<view wx:for="{{companyList}}" wx:key="id" style="margin-right: 20rpx;">
+					<image mode="widthFix" src="{{item.image}}"></image>
+					<view class="comName tc">
+						{{item.title}}
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 企业列表 / -->
+	</view>
+</view>
+
+<component-footer page-type="{{pageType}}" page-active="{{pageActive}}"></component-footer>

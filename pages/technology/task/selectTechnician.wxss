@@ -1,0 +1,17 @@
+.people {
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 5px;
+}
+
+.info {
+  width: calc(100% - 180rpx);
+  font-size: 28rpx;
+  line-height: 24px;
+}

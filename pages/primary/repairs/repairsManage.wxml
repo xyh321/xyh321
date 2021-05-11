@@ -1,0 +1,119 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view style="margin: {{titleHeight1}}px 0 80px 0;">
+	<view class="repairsManage">
+		<view class="shopImg">
+			<image src="{{'https://bxs.zolclub.com'+messageList.image}}" mode="widthFix" style="width: 750rpx;"></image>
+		</view>
+		<view class="equipmentMsg">
+			<view class="eqTitle">设备信息</view>
+			<image src="../../../icons/right.png" mode="widthFix" style="width: 14rpx;height: 28rpx;"></image>
+		</view>
+		<view class="eqName">
+			<view class="nameTitle">设备名称</view>
+			<view class="names">
+				{{messageList.name}}
+			</view>
+		</view>
+		<view class="eqType">
+			<view class="nameTitle">品牌型号</view>
+			<view class="names">
+				{{messageList.model}}
+			</view>
+		</view>
+		<view class="eqNumber">
+			<view class="nameTitle">设备编号</view>
+			<view class="names">
+				{{messageList.code}}
+			</view>
+		</view>
+		<view class="saveAddress">
+			<view class="nameTitle">存放地点</view>
+			<view class="names">
+				{{messageList.site}}
+			</view>
+		</view>
+		<view class="buyName">
+			<view class="nameTitles">保管人姓名</view>
+			<view class="namess">
+				{{messageList.takeCare}}
+			</view>
+		</view>
+		<view class="phone">
+			<view class="nameTitles">保管人电话</view>
+			<view class="namess">
+				{{messageList.mobile}}
+			</view>
+		</view>
+		<view class="buyTime">
+			<view class="nameTitle">购买日期</view>
+			<view class="names">
+				{{messageList.buyTime}}
+			</view>
+		</view>
+		<view class="overTime">
+			<view class="nameTitle">到期过保</view>
+			<view class="names">
+				{{messageList.expireTime}}
+			</view>
+		</view>
+		<view class="unitName">
+			<view class="nameTitle">单位名称</view>
+			<view class="names">
+				{{messageList.unit}}
+			</view>
+		</view>
+
+
+		<view class="equipmentMsg">
+			<view class="eqTitle">报修信息</view>
+		</view>
+		<view class="name fc">
+			<view>
+				报修姓名
+				<span style="color: #FF2D2D;">*</span>
+			</view>
+			<input type="text" bindinput="name" placeholder="请输入报修姓名" />
+		</view>
+		<view class="phoneNumber fc">
+			<view>
+				报修电话
+				<span style="color: #FF2D2D;">*</span>
+			</view>
+			<input type="number" bindinput="phoneNumber" placeholder="请输入报修电话" />
+		</view>
+		<view class="describe fc">
+			<view>
+				故障描述
+				<span style="color: #FF2D2D;">*</span>
+			</view>
+			<textarea name="" bindinput="describe" type="text" placeholder="请对您的问题进行描述" id="" cols="20"
+				rows="10"></textarea>
+		</view>
+		<view class="repairsType fc">
+			<view>报修方式</view>
+			<radio-group class="fc" bindchange="repairsType" style="margin-left: 52rpx;">
+				<radio value="立即报修" style="zoom: 70%;margin-right: 10rpx;" />立即报修
+				<radio value="预约报修" style="zoom: 70%;margin-left: 70rpx;margin-right: 10rpx;" />预约报修
+			</radio-group>
+		</view>
+		<view class="urgent fc">
+			<view>紧急程度</view>
+			<radio-group class="fc" bindchange="urgent" style="margin-left: 52rpx;">
+				<radio value="一般" style="zoom: 70%;margin-right: 10rpx;" />一般
+				<radio value="紧急" style="zoom: 70%;margin-left: 140rpx;margin-right: 10rpx;" />紧急
+			</radio-group>
+		</view>
+		<view class="uploadImg">
+			<view class="upImg">上传故障图片</view>
+			<view class="flex jc_s at_s fw_w mt10" style="width: 100%;">
+				<view wx:for="{{imgArr}}" wx:key="index" class="evaluateImg">
+					<view class="goods_cell_img" style="background-image: url({{cori_root}}{{item}});"></view>
+					<view class="shanchu" data-index="{{index}}" bindtap="shanchu">✖</view>
+				</view>
+				<image src="../../../icons/upload.png" class="upload" bindtap="oneImgUpload"></image>
+			</view>
+		</view>
+		<view class="confirm fcc" bindtap="submit">确认提交</view>
+	</view>
+</view>

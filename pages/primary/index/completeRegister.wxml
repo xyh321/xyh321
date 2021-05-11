@@ -1,0 +1,36 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view style="margin: {{titleHeight1}}px 0 80px 0;">
+	<view class="complete">
+		<view class="comName fc">
+			<view class="name">企业名称</view>
+			<input type="text" placeholder="请输入企业名称" bindinput="companyName" />
+		</view>
+		<view class="comType fc">
+			<view class="type">企业性质</view>
+			<view class="companys"></view>
+			<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+				<view class="picker">
+					{{array[index]}}
+					<image src="../../../icons/bottom.png" style="width: 16rpx;height: 12rpx;" mode="widthFix"></image>
+				</view>
+			</picker>
+		</view>
+		<view class="personName fc">
+			<view class="person">负责人</view>
+			<input type="text" placeholder="请输入负责人姓名" bindinput="personName" />
+		</view>
+		<view class="areaName fc">
+			<view class="area">所在地区</view>
+			<picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+				<view class="picker">
+					{{region[0]}}，{{region[1]}}，{{region[2]}}
+					<image src="../../../icons/bottom.png" style="width: 16rpx;height: 12rpx;" mode="widthFix"></image>
+				</view>
+			</picker>
+		</view>
+	</view>
+	<view class="next fcc" bindtap="nextStep">下一步</view>
+</view>
+
+<component-footer page-type="{{pageType}}" page-active="{{pageActive}}"></component-footer>

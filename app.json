@@ -1,0 +1,55 @@
+{
+  "pages":[
+	"pages/primary/index/index"
+	,"pages/primary/index/registerDeal"
+	,"pages/primary/index/userKnows"
+	,"pages/primary/index/register"
+  ,"pages/primary/index/my"
+  ,"pages/primary/index/invite"
+	,"pages/primary/index/completeRegister"
+	,"pages/primary/repairs/repairsRightAway"
+	,"pages/primary/repairs/repairsManage"
+	,"pages/primary/myRepairs/myRepairs"
+	,"pages/primary/myRepairs/appraise"
+	,"pages/primary/myRepairs/step"
+	,"pages/primary/my/feedback"
+	,"pages/primary/my/index"
+
+    ,"pages/technology/task/administration"
+    ,"pages/technology/task/selectTechnician"
+    ,"pages/technology/task/feedback"
+    ,"pages/technology/task/chooseParts"
+    ,"pages/technology/task/repairProgress"
+    ,"pages/technology/grabbingOrders/index"
+    ,"pages/technology/inspection/index"
+    
+    ,"pages/technology/patrolTask/index"
+
+    ,"pages/technology/my/index"
+    ,"pages/technology/my/problem"
+    ,"pages/technology/my/problemInfo"
+    
+    ,"components/title"
+    ,"components/login"
+    ,"components/footer"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black",
+    "navigationStyle": "custom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "component-title": "/components/title",
+    "component-login": "/components/login",
+    "component-footer": "/components/footer"
+  }
+}

@@ -1,0 +1,88 @@
+page {
+	background-color: #F1F1F1;
+}
+
+.banner {}
+
+.banner image {
+	width: 750rpx;
+}
+
+
+navigator {
+	position: relative;
+}
+
+.comText {
+	z-index: 999;
+	margin-left: 102rpx;
+	margin-top: -240rpx;
+	color: #F4FBFE;
+}
+
+.textOne {
+	font-size: 36rpx;
+	font-family: PingFang SC;
+	line-height: 31rpx;
+	color: #F1F1F1;
+}
+
+.textTwo {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 31rpx;
+	color: #F1F1F1;
+	margin-top: 10rpx;
+}
+
+.textThree {
+	margin-top: 53rpx;
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 31rpx;
+	color: #F1F1F1;
+}
+
+.register {
+	width: 710rpx;
+	margin: 20rpx 20rpx 20rpx 20rpx;
+}
+
+.technicist {
+	width: 710rpx;
+	margin: 0rpx 20rpx 20rpx 20rpx;
+}
+
+.comTitle {
+	font-weight: bold;
+	color: #090909;
+	font-size: 32rpx;
+	font-family: PingFang SC;
+	line-height: 45rpx;
+	margin: 0 0 20rpx 20rpx;
+}
+
+.company {
+	margin-left: 20rpx;
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	overflow-x: scroll;
+}
+
+.company image {
+	width: 164rpx;
+	height: 164rpx;
+}
+
+.comName {
+	font-size: 16rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 22rpx;
+}
+.companyShow{
+	padding-bottom: 200rpx;
+}

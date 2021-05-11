@@ -1,0 +1,86 @@
+<component-title is-home="{{isHome}}" is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+<view class="bb p10" style="margin: {{titleHeight1}}px 0 150px 0;">
+  <view class="flex jc_a at_c bg_fff bb pt20 pb20 radius5">
+    <view class="flex fd_c at_c parameter">
+      <view>{{statistic.count_user}}</view>
+      <view>服务用户数</view>
+    </view>
+    <view class="flex fd_c at_c parameter">
+      <view>{{statistic.solve_rate}}</view>
+      <view>解决率</view>
+    </view>
+    <view class="flex fd_c at_c parameter">
+      <view>{{statistic.good_rate}}</view>
+      <view>好评率</view>
+    </view>
+    <view class="flex fd_c at_c parameter">
+      <view>{{statistic.ontime_rate}}</view>
+      <view>及时率</view>
+    </view>
+  </view>
+
+  <view class=" mt10 bg_fff bb p10 radius5">
+    <view class="flex at_c bb title pr fb">
+      <image src="../../../resource/technology/workOrder.png" style="width: 36rpx;height: 36rpx;"></image>
+      <view class="ml10">总工单数</view>
+      <view class="pa" style="right: 0;">
+        <text class="mr5" style="color: #0099FF;">{{statistic.all_count}}</text>单
+      </view>
+    </view>
+    <view class="flex at_c jc_b bb mt10" style="padding: 10px 5px;font-size: 28rpx;">
+      <view class="flex">
+        <image src="../../../resource/technology/month.png" style="width: 36rpx;height: 36rpx;"></image>
+        <view class="ml10">本月工单数</view>
+      </view>
+      <view style="right: 0;">
+        <text class="mr5" style="color: #0099FF;">{{statistic.month_count}}</text>单
+      </view>
+    </view>
+    <view class="flex at_c jc_b bb" style="padding: 10px 5px;font-size: 28rpx;">
+      <view class="flex">
+        <image src="../../../resource/technology/today.png" style="width: 36rpx;height: 36rpx;"></image>
+        <view class="ml10">今日工单数</view>
+      </view>
+      <view style="right: 0;">
+        <text class="mr5" style="color: #0099FF;">{{statistic.today_count}}</text>单
+      </view>
+    </view>
+    <view class="table mt10">
+      <view class="tt">
+        <view>工单编号</view>
+        <view>接单时间</view>
+        <view>处理状态</view>
+      </view>
+      <view class="table_body">
+        <view class="tac" style="padding: 100rpx 0;width: 100%;" wx:if="{{!list.length}}">暂无工单~</view>
+        <view class="th" wx:if="{{list.length}}" wx:for="{{list}}" wx:key="index">
+          <view>{{item.code}}</view>
+          <view>{{item.acceptTime}}</view>
+          <view wx:if="{{item.status==1}}" class="inProcess">待分配</view>
+          <view wx:if="{{item.status==2}}" class="inProcess">未接单</view>
+          <view wx:if="{{item.status==3}}" class="inProcess">未接单</view>
+          <view wx:if="{{item.status==4}}" class="inProcess">处理中</view>
+          <view wx:if="{{item.status==5}}" class="inProcess">处理中</view>
+          <view wx:if="{{item.status==6}}" class="passed">待确认</view>
+          <view wx:if="{{item.status==7}}" class="completed">完成</view>
+          <view wx:if="{{item.status==8}}" class="inProcess">撤销</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class=" mt10 bg_fff bb p10 radius5">
+    <view class="flex at_c bb title">
+      <image src="../../../resource/technology/flower.png" style="width: 36rpx;height: 36rpx;"></image>
+      <view class="ml10 fb">用户评价</view>
+    </view>
+    <view class="flex jc_s at_s fw_w mt15">
+      <view class="tac" style="padding: 100rpx 0;width: 100%;" wx:if="{{!getWordArr.length}}">暂无评价~</view>
+      <view class="label" wx:if="{{getWordArr.length}}" wx:for="{{getWordArr}}" wx:key="index">
+        {{item.word}}
+        <text>({{item.num}})</text>
+      </view>
+    </view>
+  </view>
+</view>
+<component-footer page-type="{{pageType}}" page-active="{{pageActive}}"></component-footer>

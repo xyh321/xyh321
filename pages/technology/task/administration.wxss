@@ -1,0 +1,61 @@
+.head {
+  width: 100%;
+  color: #707070;
+  padding: 15px 10px;
+  font-size: 32rpx;
+  z-index: 1;
+  left: 0;
+  box-shadow: #cacaca 0px 0px 2px 1px;
+}
+
+.active {
+  position: relative;
+  color: #0099FF;
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: calc(50% - 40rpx);
+  width: 80rpx;
+  height: 4rpx;
+  background-color: #0099FF;
+}
+
+.task {
+  border-radius: 5px;
+  position: relative;
+}
+
+.task_head {
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 26rpx;
+  border-bottom: 1px solid #F1F1F1;
+}
+
+.time {
+  color: #C1C1C1;
+  font-size: 18rpx;
+}
+
+.cell {
+  font-size: 24rpx;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.cell>view:first-child {
+  flex-shrink: 0;
+}
+
+.faultImg {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 0 8px 8px 0;
+}

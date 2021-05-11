@@ -1,0 +1,77 @@
+<component-title is-home="{{isHome}}" is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view class="bb p10" style="margin: {{titleHeight1}}px 0 150px 0;">
+  <view class="pf bb flex jc_a at_c bg_fff head" style="top: {{titleHeight1}}px;">
+    <view class="{{currentStatus==item.status?'active':''}}" wx:for="{{statusList}}" bindtap="changeStatus"
+      wx:key="index" data-status="{{item.status}}">
+      {{item.name}}
+    </view>
+  </view>
+
+  <view class="bb" style="padding: 55px 0;">
+    <view class="bg_fff task mb10" wx:for="{{list}}" wx:key="index">
+      <view class="task_btn2 pa" style="right: 10px;top: 100rpx;">
+        {{item.status_type}}
+      </view>
+      <view class="task_head">
+        <view class="fb">工单：{{item.code}}</view>
+        <view class="time">{{item.createTime}}</view>
+      </view>
+      <view class="cell">
+        <view>报修姓名：</view>
+        <view>{{item.name}}</view>
+      </view>
+      <view class="cell">
+        <view>报修电话：</view>
+        <view>{{item.mobile}}</view>
+      </view>
+      <view class="cell">
+        <view>报修单位：</view>
+        <view>{{item.unit}}</view>
+      </view>
+      <view class="cell">
+        <view>所属部门：</view>
+        <view>{{item.section}}</view>
+      </view>
+      <view class="cell">
+        <view>报修地点：</view>
+        <view>{{item.site}}</view>
+      </view>
+      <view class="cell">
+        <view>故障类型：</view>
+        <view>{{item.gzType}}</view>
+      </view>
+      <view class="cell">
+        <view>故障描述：</view>
+        <view>{{item.gzDescription}}</view>
+      </view>
+      <view class="cell" style="border-bottom: 1px solid #F1F1F1;">
+        <view>故障图片：</view>
+        <view>
+          <image wx:if="{{item.images.length}}" wx:for="{{item.images}}" wx:for-item="items" wx:key="index"
+            class="faultImg" src="{{items}}" mode="aspectFill" bindtap="previewImg" data-images="{{item.images}}"
+            data-index="{{index}}">
+          </image>
+          <view wx:if="{{!item.images.length}}">无</view>
+        </view>
+      </view>
+      <view class="flex jc_e at_c bb p10 pt15 pb15">
+        <block wx:if="{{currentStatus==1}}">
+          <view class="task_btn" bindtap="transferOrder" data-oid="{{item.id}}">转单</view>
+          <view class="task_btn ml15" bindtap="confirmOrder" data-oid="{{item.id}}">立即接单</view>
+        </block>
+        <block wx:if="{{currentStatus==4}}">
+          <view class="task_btn" wx:if="{{item.status==2}}" bindtap="transferOrder">转单</view>
+          <view class="task_btn ml15" bindtap="chooseParts" data-code="{{item.code}}" data-oid="{{item.id}}">选择配件</view>
+          <view class="task_btn ml15" bindtap="taskFeedback" data-oid="{{item.id}}">完成工单</view>
+        </block>
+        <block wx:if="{{currentStatus==6 || currentStatus==7}}">
+          <view class="task_btn" bindtap="lookProgress" data-oid="{{item.id}}">报修进度</view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<component-footer page-type="{{pageType}}" page-active="{{pageActive}}"></component-footer>

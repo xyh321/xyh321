@@ -1,0 +1,95 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view style="margin: {{titleHeight1}}px 0 80px 0;">
+	<view class="reapirRight">
+		<view class="title">喵喵网络</view>
+
+		<view class="unit fc">
+			<view class="start">
+				报修单位
+				<span style="color: #FF2D2D;" wx:if="{{queryType=='company'}}">*</span>
+			</view>
+			<picker bindchange="bindUnit" value="{{unitIndex}}" range="{{unitArray}}">
+				<view class="picker flex at_c">
+					<input type="text" placeholder="请选择报修单位" disabled value="{{unitArray[unitIndex]}}"></input>
+					<image src="../../../icons/bottom.png" style="width: 16rpx;height: 12rpx;margin-left: -90rpx;" mode="widthFix" ></image>
+				</view>
+			</picker>
+		</view>
+		<view class="apartment fc">
+			<view class="start">
+				报修部门
+				<span style="color: #FF2D2D;" wx:if="{{queryType=='company'}}">*</span>
+			</view>
+			<picker bindchange="apartments" value="{{apartIndex}}" range="{{apartArray}}" range-key="name" disabled="{{unitIndex==null?true:false}}">
+				<view class="picker flex at_c">
+					<input type="text" placeholder="请选择报修部门" disabled value="{{apartArray[apartIndex].name}}"></input>
+					<image src="../../../icons/bottom.png" style="width: 16rpx;height: 12rpx; margin-left: -90rpx;" mode="widthFix"></image>
+				</view>
+			</picker>
+		</view>
+
+		<view class="type fc">
+			<view class="start">
+				故障类型
+				<span style="color: #FF2D2D;" wx:if="{{queryType=='company'}}">*</span>
+			</view>
+			<input type="text" bindinput="type" placeholder="请选择故障类型" />
+		</view>
+		<view class="name fc">
+			<view class="start">
+				报修姓名
+				<span style="color: #FF2D2D;">*</span>
+			</view>
+			<input type="text" bindinput="name" placeholder="请输入报修姓名" />
+		</view>
+		<view class="phoneNumber fc">
+			<view class="start">
+				报修电话
+				<span style="color: #FF2D2D;">*</span>
+			</view>
+			<input type="number" bindinput="phoneNumber" placeholder="请输入报修电话" />
+		</view>
+		<view class="address fc">
+			<view class="start">
+				报修地点
+				<span style="color: #FF2D2D;" wx:if="{{queryType=='company'}}">*</span>
+			</view>
+			<input type="text" bindinput="address" placeholder="请输入报修地点" />
+		</view>
+		<view class="describe fc">
+			<view class="start">
+				故障描述
+				<span style="color: #FF2D2D;">*</span>
+			</view>
+			<textarea name="" bindinput="describe" type="text" placeholder="请对您的问题进行描述" id="" cols="20"
+				rows="10"></textarea>
+		</view>
+		<view class="repairsType fc">
+			<view class="start">报修方式 <span style="color: #FF2D2D;">*</span></view>
+			<radio-group class="fc" bindchange="repairsType" style="margin-left: 52rpx;">
+				<radio value="1" style="zoom: 70%;margin-right: 10rpx;" />立即报修
+				<radio value="2" style="zoom: 70%;margin-left: 70rpx;margin-right: 10rpx;" />预约报修
+			</radio-group>
+		</view>
+		<view class="urgent fc">
+			<view class="start">紧急程度 <span style="color: #FF2D2D;" wx:if="{{queryType=='company'}}">*</span></view>
+			<radio-group class="fc" bindchange="urgent" style="margin-left: 52rpx;">
+				<radio value="1" style="zoom: 70%;margin-right: 10rpx;" />一般
+				<radio value="2" style="zoom: 70%;margin-left: 140rpx;margin-right: 10rpx;" />紧急
+			</radio-group>
+		</view>
+		<view class="uploadImg">
+			<view class="upImg">上传故障图片 <span style="color: #FF2D2D;" wx:if="{{queryType=='company'}}">*</span></view>
+			<view class="flex jc_s at_s fw_w mt10" style="width: 100%;">
+				<view wx:for="{{imgArr}}" wx:key="index" class="evaluateImg">
+					<view class="goods_cell_img" style="background-image: url({{cori_root}}{{item}});"></view>
+					<view class="shanchu" data-index="{{index}}" bindtap="shanchu">✖</view>
+				</view>
+				<image src="../../../icons/upload.png" class="upload" bindtap="oneImgUpload"></image>
+			</view>
+		</view>
+		
+		<view class="confirm fcc" bindtap="confirmUpload">确认提交</view>
+	</view>
+</view>

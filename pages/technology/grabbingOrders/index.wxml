@@ -1,0 +1,59 @@
+<component-title is-home="{{isHome}}" is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view class="tips" wx:if="{{status===0}}">
+  企业未开启抢单功能！
+</view>
+<view class="bb p10" style="margin: {{titleHeight1}}px 0 150px 0;" wx:if="{{status===1}}">
+  <view class="bb">
+    <view class="bg_fff task mb10" wx:for="{{list}}" wx:key="index">
+      <view class="pa flex fd_c at_c" style="right: 10px;top: 100rpx;">
+        <image class="icon" src="../../../resource/technology/rob.png" mode="widthFix"></image>
+        <text class="time mt5">30分钟前</text>
+      </view>
+      <view class="task_head">
+        <view class="fb">工单：{{item.code}}</view>
+        <view class="time">{{item.createTime}}</view>
+      </view>
+      <view class="cell">
+        <view>报修姓名：</view>
+        <view>{{item.name}}</view>
+      </view>
+      <view class="cell">
+        <view>报修电话：</view>
+        <view>{{item.mobile}}</view>
+      </view>
+      <view class="cell">
+        <view>报修单位：</view>
+        <view>{{item.unit}}</view>
+      </view>
+      <view class="cell">
+        <view>所属部门：</view>
+        <view>{{item.section}}</view>
+      </view>
+      <view class="cell">
+        <view>报修地点：</view>
+        <view>{{item.site}}</view>
+      </view>
+      <view class="cell">
+        <view>故障类型：</view>
+        <view>{{item.gzType}}</view>
+      </view>
+      <view class="cell">
+        <view>故障描述：</view>
+        <view>{{item.gzDescription}}</view>
+      </view>
+      <view class="cell" style="border-bottom: 1px solid #F1F1F1;">
+        <view>故障图片：</view>
+        <view>
+          <image wx:for="{{item.images}}" wx:for-item="items" wx:key="index" class="faultImg" src="{{items}}" mode="aspectFill" bindtap="previewImg" data-images="{{item.images}}" data-index="{{index}}">
+          </image>
+        </view>
+      </view>
+      <view class="flex jc_e at_c bb p10 pt15 pb15">
+        <view class="task_btn" bindtap="grabOrder" data-id="{{item.id}}">立即抢单</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<component-footer page-type="{{pageType}}" page-active="{{pageActive}}"></component-footer>

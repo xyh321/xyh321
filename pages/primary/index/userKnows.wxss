@@ -1,0 +1,8 @@
+page{
+	background-color: #fff !important;
+}
+.userKnows{
+	margin-top: 200rpx;
+	padding: 20rpx;
+	text-indent: 1em;
+}

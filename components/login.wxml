@@ -1,0 +1,17 @@
+<!-- 这是自定义组件的内部WXML结构 -->
+<view class="zhezhaoceng3 flex jc_c at_c" style="display: {{isShowLogin?'flex':'none'}}">
+  <view class="login pr flex jc_c fd_c at_c">
+    <image class="pa image_icon" src="../resource/keai.png" mode="widthFix"></image>
+    <view class="flex jc_c at_c fd_c">
+      <view class="fb">报修云小程序</view>
+      <view class="tips mt20">申请获取以下权限</view>
+      <view class="tips" wx:if="{{step==1}}">获得你的公开信息（昵称、头像等）</view>
+      <view class="tips" wx:if="{{step==2}}">获得你的手机号</view>
+    </view>
+    <view class="flex jc_b at_c mt30" style="width: 100%;">
+      <button class="quxiao" bindtap="cancel">取消</button>
+      <button wx:if="{{step==1}}" class="denglu" bindtap="getUserProfile">准了</button>
+      <button wx:if="{{step==2}}" class="denglu" bindgetphonenumber='getUserInfoStep2' open-type='getPhoneNumber'>可以</button>
+    </view>
+  </view>
+</view>

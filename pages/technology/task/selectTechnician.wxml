@@ -1,0 +1,19 @@
+<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+
+<view class="bb p10" style="margin: {{titleHeight1}}px 0 150px 0;">
+  <view wx:if="{{!list.length}}" class="tac bb" style="padding-top: 100rpx;">暂无可选择的技术员~</view>
+  <view class="people" wx:if="{{list.length}}" wx:for="{{list}}" wx:key="index">
+    <view class="flex jc_b at_s bb p15" style="border-bottom: 1px solid #f1f1f1;">
+      <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+      <view class="info">
+        <view>姓名：{{item.username}}</view>
+        <view>电话：{{item.mobile}}</view>
+        <view>维修类型：{{item.gzType}}</view>
+        <view>所属部门：{{item.section}}</view>
+      </view>
+    </view>
+    <view class="bb p10 flex jc_e">
+      <view class="task_btn" data-id="{{item.id}}" bindtap="bindTech">确认转单</view>
+    </view>
+  </view>
+</view>

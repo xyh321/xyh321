@@ -1,0 +1,197 @@
+page {
+	background-color: #fff !important;
+}
+
+.equipmentMsg {
+	border-left: 10rpx solid #0099FF;
+	background-color: #F1F1F1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20rpx;
+}
+
+.eqTitle {
+	font-size: 32rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 81rpx;
+	color: #202020;
+}
+
+.eqName,
+.eqType,
+.eqNumber,
+.saveAddress,
+.buyName,
+.phone,
+.buyTime,
+.overTime,
+.unitName {
+	margin: 30rpx;
+	padding-bottom: 30rpx;
+	display: flex;
+	align-items: flex-start;
+	border-bottom: 1px solid #F1F1F1;
+}
+
+.nameTitle {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 33rpx;
+	color: #202020;
+	width: 100rpx;
+}
+
+.nameTitles {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 33rpx;
+	color: #202020;
+	width: 130rpx;
+}
+
+.names {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 33rpx;
+	color: #C1C1C1;
+	margin-left: 60rpx;
+	width: 538rpx;
+}
+
+.namess {
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 33rpx;
+	color: #C1C1C1;
+	margin-left: 30rpx;
+	width: 538rpx;
+}
+
+.name,
+.phoneNumber,
+.describe,
+.repairsType,
+.urgent {
+	border-bottom: 1px solid #FAFAFA;
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	margin: 30rpx;
+	padding-bottom: 30rpx;
+}
+
+.uploadImg {
+	margin: 30rpx;
+	padding-bottom: 30rpx;
+	margin-bottom: 100rpx;
+}
+
+.describe {
+	display: flex;
+	align-items: flex-start;
+}
+
+input {
+	margin-left: 52rpx;
+}
+
+textarea {
+	margin-left: 52rpx;
+	border: 1px solid #DBDBDB;
+	border-radius: 8rpx;
+	width: 400rpx;
+	height: 100rpx;
+	padding: 20rpx;
+}
+
+.upImg {
+	line-height: 90rpx;
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+}
+
+.upload {
+	width: 158rpx;
+	height: 158rpx;
+}
+
+.confirm {
+	background-color: #128DE7;
+	color: #fff;
+	font-size: 36rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	line-height: 81rpx;
+	width: 710rpx;
+	height: 98rpx;
+	margin: 50rpx 20rpx;
+	border-radius: 12rpx;
+}
+
+radio .wx-radio-input {
+	width: 34rpx;
+	height: 34rpx;
+	border-radius: 50%;
+}
+
+/* 选中后 背景及勾 的样式 */
+radio .wx-radio-input.wx-radio-input-checked::before {
+	width: 40rpx;
+	height: 40rpx;
+	border-radius: 50%;
+	line-height: 40rpx;
+	text-align: center;
+	font-size: 25rpx;
+	color: #fff;
+	background: #0099FF;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+/* 上传图片 */
+
+.goods_cell_img {
+	width: 100%;
+	height: 0;
+	overflow: hidden;
+	margin: 0;
+	padding-bottom: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+}
+
+.evaluateImg {
+	width: calc((100% - 30px) / 4);
+	margin: 0 10px 10px 0;
+	position: relative;
+}
+
+.evaluateImg:nth-child(4n) {
+	margin: 0 0 10px 0;
+}
+
+.shanchu {
+	width: 36rpx;
+	height: 36rpx;
+	box-sizing: border-box;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.6);
+	color: #fff;
+	font-size: 20rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 7rpx;
+	right: 7rpx;
+}

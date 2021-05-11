@@ -1,0 +1,36 @@
+/* 这里的样式只应用于这个自定义组件 */
+@import "../app.wxss";
+
+.image_icon {
+  width: 75px;
+  top: -20px;
+}
+
+.login {
+  background-color: #fff;
+  width: 260px;
+  box-sizing: border-box;
+  padding: 70px 10px 20px 10px;
+  border-radius: 10px;
+}
+
+.tips {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.quxiao,.denglu {
+  font-weight: normal;
+  font-size: 26rpx;
+}
+
+.denglu {
+  background-color: #f18241;
+  color: #fff;
+}
+
+button {
+  width: 115px !important;
+  padding: 6px 0 !important;
+  margin: 0 !important;
+}

@@ -1,0 +1,68 @@
+<view class="flex jc_a at_s pf footer bg_fff bb pt5 pb15">
+  <block wx:if="{{pageType==1}}">
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/primary/index/index">
+      <view class="img_view">
+        <image class="icon" src="../resource/navigation/{{pageActive==1?'home-active':'home'}}.png" mode="widthFix">
+        </image>
+      </view>
+      <view class="text {{pageActive==1?'text_active':''}}">首页</view>
+    </view>
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/primary/myRepairs/myRepairs">
+      <view class="img_view">
+        <image class="icon" src="../resource/navigation/{{pageActive==2?'repair-active':'repair'}}.png" mode="widthFix">
+        </image>
+      </view>
+      <view class="text {{pageActive==2?'text_active':''}}">我的报修</view>
+    </view>
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/primary/index/my" style="height: 100rpx;">
+      <image class="icon scanning" src="../resource/navigation/scanning.png" mode="widthFix"></image>
+    </view>
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/primary/my/feedback">
+      <view class="img_view">
+        <image class="icon" src="../resource/navigation/{{pageActive==3?'feedback-active':'feedback'}}.png"
+          mode="widthFix"></image>
+      </view>
+      <view class="text {{pageActive==3?'text_active':''}}">意见反馈</view>
+    </view>
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/primary/my/index">
+      <view class="img_view">
+        <image class="icon" src="../resource/navigation/{{pageActive==4?'my-active':'my'}}.png" mode="widthFix"></image>
+      </view>
+      <view class="text {{pageActive==4?'text_active':''}}">我的</view>
+    </view>
+  </block>
+
+
+  <block wx:if="{{pageType==2}}">
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/technology/task/administration">
+      <view class="img_view">
+        <image class="icon" src="../resource/navigation/technology/{{pageActive==1?'task-active':'task'}}.png" mode="widthFix">
+        </image>
+      </view>
+      <view class="text {{pageActive==1?'text_active':''}}">任务管理</view>
+    </view>
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/technology/grabbingOrders/index">
+      <view class="img_view">
+        <image class="icon" src="../resource/navigation/technology/{{pageActive==2?'grabbing-active':'grabbing'}}.png" mode="widthFix">
+        </image>
+      </view>
+      <view class="text {{pageActive==2?'text_active':''}}">抢单</view>
+    </view>
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/technology/inspection/index" style="height: 100rpx;">
+      <image class="icon scanning" src="../resource/navigation/technology/patrolTask.png" mode="widthFix"></image>
+    </view>
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/technology/patrolTask/index">
+      <view class="img_view">
+        <image class="icon" src="../resource/navigation/technology/{{pageActive==3?'analysis-active':'analysis'}}.png"
+          mode="widthFix"></image>
+      </view>
+      <view class="text {{pageActive==3?'text_active':''}}">统计分析</view>
+    </view>
+    <view bindtap="jump" class="flex fd_c at_c" data-url="/pages/technology/my/index">
+      <view class="img_view">
+        <image class="icon" src="../resource/navigation/technology/{{pageActive==4?'my-active':'my'}}.png" mode="widthFix"></image>
+      </view>
+      <view class="text {{pageActive==4?'text_active':''}}">我的</view>
+    </view>
+  </block>
+</view>
