@@ -57,6 +57,7 @@ Page({
 		var obj = wx.getLaunchOptionsSync(),
 			ids = options.ids,
 			type = options.type;
+			console.log(obj.query);
 		that.setData({
 			bxType: type,
 			ids: ids

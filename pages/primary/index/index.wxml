@@ -8,7 +8,7 @@
 				indicator-active-color="#ffffff">
 				<swiper-item wx:for="{{bannerList}}" wx:key="id">
 					<navigator>
-						<image mode="aspectFill" src="{{item.image}}"></image>
+						<image mode="widthFix" src="{{item.image}}"></image>
 					</navigator>
 				</swiper-item>
 			</swiper>

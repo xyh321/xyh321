@@ -2,9 +2,9 @@
 
 <view style="margin: {{titleHeight1}}px 0 80px 0;">
 	<view class="reapirRight">
-		<view class="title">喵喵网络</view>
+		<!-- <view class="title">喵喵网络</view> -->
 
-		<view class="unit fc">
+		<view class="unit fc" style="margin-top: 250rpx;">
 			<view class="start">
 				报修单位
 				<span style="color: #FF2D2D;" wx:if="{{bxType=='company'}}">*</span>
