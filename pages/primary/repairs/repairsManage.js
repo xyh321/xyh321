@@ -12,7 +12,7 @@ Page({
 		isShow: true,
 		statusBarHeight: app.globalData.statusBarHeight,
 		//query获取
-		ids: "",
+		uid: "",
 		type: "",
 		facilityId: "",
 
@@ -32,6 +32,17 @@ Page({
 		imgArr: []
 	},
 
+	getUserInfo: function(e) {
+		let that = this;
+		var userinfo = wx.getStorageSync('userinfo');
+		console.log('userinfo', userinfo);
+		if (!userinfo) {
+			that.setData({
+				isShowLogin: true
+			})
+		}
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -42,16 +53,56 @@ Page({
 			titleHeight: statusBarHeight + 6,
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
-		that.getEqList();
-		var ids = options.ids,
-			type = options.type,
-			facilityId = options.facilityId;
-		console.log(options);
-		that.setData({
-			ids: ids,
-			type: type,
-			facilityId: facilityId
-		})
+
+		var token = wx.getStorageSync('token');
+		if (!token) {
+			wx.showModal({
+				title: '请您先登录！',
+				icon: 'none',
+				success(res) {
+					if (res.confirm) {
+						that.getUserInfo();
+
+
+						var uid = options.ids,
+							type = options.type,
+							facilityId = options.facilityId;
+						wx.setStorageSync('facilityId', facilityId);
+					} else if (res.cancel) {
+						console.log('用户点击取消')
+					}
+				}
+			});
+		} else if (token) {
+			console.log(options);
+			that.setData({
+				uid: uid,
+				type: type,
+				facilityId: facilityId,
+				isShowLogin: false
+			});
+			var uid = options.ids,
+				type = options.type,
+				facilityId = options.facilityId;
+			// wx.setStorageSync('facilityId', facilityId);
+			that.getEqList(token, facilityId);
+
+		}
+	},
+
+	//获取设备报修信息
+	getEqList: function(token, facilityId) {
+		let that = this;
+		var token = wx.getStorageSync('token'),
+			facilityId = wx.getStorageSync('facilityId');
+		_cori.default.request('POST', 'Technician/getFacility', token, {
+			uid: facilityId
+		}).then(function(res) {
+			// console.log(res.data.data);
+			that.setData({
+				messageList: res.data.data
+			})
+		});
 	},
 
 	//图片上传
@@ -129,22 +180,6 @@ Page({
 				})
 			}
 		});
-	},
-	//获取设备报修信息
-	getEqList: function() {
-		let that = this;
-		var token = wx.getStorageSync('token'),
-			uid = '1';
-		_cori.default.request('POST', 'Technician/getFacility', token, {
-			uid: uid
-		}).then(function(res) {
-			// console.log(res.data.data);
-			that.setData({
-				messageList: res.data.data
-			})
-		});
-
-
 	},
 
 	name: function(e) {

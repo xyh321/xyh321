@@ -14,8 +14,8 @@ Page({
 
 		index: 0,
 		//报修分类
-		bxType: '',
 		ids: '',
+		bxType: '',
 
 		unit: "",
 		apartment: "",
@@ -43,6 +43,17 @@ Page({
 
 	},
 
+	getUserInfo: function(e) {
+		let that = this;
+		var userinfo = wx.getStorageSync('userinfo');
+		console.log('userinfo', userinfo);
+		if (!userinfo) {
+			that.setData({
+				isShowLogin: true
+			})
+		}
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -53,18 +64,63 @@ Page({
 			titleHeight: statusBarHeight + 6,
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
-		// console.log(options);
-		var obj = wx.getLaunchOptionsSync(),
-			ids = options.ids,
-			type = options.type;
-			console.log(obj.query);
-		that.setData({
-			bxType: type,
-			ids: ids
-		});
-		this.getUnit();
+		var token = wx.getStorageSync('token');
+		if (!token) {
+			wx.showModal({
+				content: '请您先登录！',
+				icon: 'none',
+				success(res) {
+					if (res.confirm) {
+						that.getUserInfo();
+						
+						
+						var ids = options.ids;
+						wx.setStorageSync('ids', ids);
+					} else if (res.cancel) {
+						console.log('用户点击取消')
+					}
+				}
+			});
+		} else if (token) {
+			console.log(options);
+			that.setData({
+				ids: options.ids,
+				isShowLogin: false
+			});
+			var uid = options.ids;
+			// wx.setStorageSync('ids', ids);
+			that.getUnits(token, uid);
+		}
 	},
-	
+
+	//获取报修单位,部门
+	getUnits: function(token, uid) {
+		let that = this;
+		var token = wx.getStorageSync('token'),
+			uid = wx.getStorageSync('ids');
+		_cori.default.request('POST', 'Technician/getUnit', token, {
+			uid: uid
+		}).then(function(res) {
+			// console.log(res.data.data);
+			var unitArr = [],
+				listArr = res.data.data;
+
+			listArr.forEach(function(item, index) {
+				unitArr.push(item.name);
+				// apartArr.push(item.section);
+			});
+
+			// for (let index = 0; index < apartArr.length; index++) {
+			// 	console.log(apartArr[index]);
+			// };
+			that.setData({
+				unitArray: unitArr,
+				listArr: listArr
+				// apartArray: apartArr
+			});
+		});
+	},
+
 	inputs: function(e) {
 		console.log(e);
 	},
@@ -111,34 +167,8 @@ Page({
 			imgArr: imgArr
 		});
 	},
-	//获取报修单位,部门
-	getUnit: function() {
-		let that = this;
-		var uid = that.data.ids;
-		// console.log(uid);
-		_cori.default.request('POST', 'Technician/getUnit', null, {
-			uid: uid
-		}).then(function(res) {
-			// console.log(res.data.data);
-			var unitArr = [],
-				// apartArr = [],
-				listArr = res.data.data;
 
-			listArr.forEach(function(item, index) {
-				unitArr.push(item.name);
-				// apartArr.push(item.section);
-			});
 
-			// for (let index = 0; index < apartArr.length; index++) {
-			// 	console.log(apartArr[index]);
-			// };
-			that.setData({
-				unitArray: unitArr,
-				listArr: listArr
-				// apartArray: apartArr
-			});
-		});
-	},
 	//报修单位点击事件
 	bindUnit: function(e) {
 		console.log(e);
@@ -208,12 +238,12 @@ Page({
 			path: path
 		}).then(function(res) {
 			console.log(res);
-			if(res.data.code==200){
+			if (res.data.code == 200) {
 				wx.navigateTo({
 					url: '../myRepairs/myRepairs',
 				})
 			}
-			
+
 		});
 	},
 

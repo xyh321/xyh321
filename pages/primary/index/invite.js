@@ -15,7 +15,16 @@ Page({
 
 		uid: '',
 	},
-
+	getUserInfo: function(e) {
+		let that = this;
+		var userinfo = wx.getStorageSync('userinfo');
+		console.log('userinfo', userinfo);
+		if (!userinfo) {
+			that.setData({
+				isShowLogin: true
+			})
+		}
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -27,21 +36,41 @@ Page({
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
 
-		var ids = options.ids;
-		that.setData({
-			uid: ids
-		});
-		console.log(options);
-		that.invitation();
+		var token = wx.getStorageSync('token');
+		var userinfo = wx.getStorageSync('userinfo');
+		if (!token) {
+			wx.showModal({
+				content: '请您先登录！',
+				icon: 'none',
+				success(res) {
+					if (res.confirm) {
+						that.getUserInfo();
+						that.setData({
+							isShowLogin: true,
+							token: token
+						});
+						var ids = options.ids;
+						wx.setStorageSync('ids', ids);
+					} else if (res.cancel) {
+						console.log('用户点击取消');
+					}
+				}
+			});
+		} else if (token) {
+			that.setData({
+				isShowLogin: false
+			});
+			var ids = options.id;
+			// var ids = wx.setStorageSync('ids', ids);
+			that.invitation(token, ids);
+		}
 	},
 
-	invitation: function() {
+	invitation: function(token, ids) {
 		let that = this;
 		var token = wx.getStorageSync('token'),
-			uid = that.data.uid;
-		console.log(uid);
+			uid = wx.getStorageSync('ids');
 		wx.showModal({
-			title: '温馨提示',
 			content: '是否接受成为技术员',
 			success(res) {
 				if (res.confirm) {
@@ -50,10 +79,26 @@ Page({
 					}).then(function(res) {
 						// console.log(res.data.code);
 						var code = res.data.code;
-						if (code == 200 || code == 400) {
-							wx.navigateTo({
-								url: 'index'
-							})
+						if (code == 200) {
+							wx.showToast({
+								title: '绑定成功!',
+								icon: 'none'
+							});
+							setTimeout(function() {
+								wx.navigateTo({
+									url: 'index'
+								})
+							}, 1000);
+						} else if (code == 400) {
+							wx.showToast({
+								title: '该账号已绑定技术员!',
+								icon: 'none'
+							});
+							setTimeout(function() {
+								wx.navigateTo({
+									url: 'index'
+								})
+							}, 1000);
 						}
 					});
 				} else if (res.cancel) {
