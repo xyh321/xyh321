@@ -25,13 +25,13 @@ Page({
 		});
 		that.getDeal();
 	},
+	
 	//获取协议
 	getDeal: function() {
 		let that = this;
-		var token = wx.getStorageSync('token'),
-			type = 1;
+		var token = wx.getStorageSync('token');
 		_cori.default.request('POST', 'User/notice', token, {
-			type:type
+			type: 2
 		}).then(function(res) {
 			that.setData({
 				text: res.data.data

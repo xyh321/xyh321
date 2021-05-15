@@ -64,6 +64,11 @@ Page({
 			titleHeight: statusBarHeight + 6,
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
+		
+		var ids = options.ids;
+		if(ids) {
+			wx.setStorageSync('ids', ids);
+		}
 		var token = wx.getStorageSync('token');
 		if (!token) {
 			wx.showModal({
@@ -72,10 +77,6 @@ Page({
 				success(res) {
 					if (res.confirm) {
 						that.getUserInfo();
-						
-						
-						var ids = options.ids;
-						wx.setStorageSync('ids', ids);
 					} else if (res.cancel) {
 						console.log('用户点击取消')
 					}
@@ -87,17 +88,13 @@ Page({
 				ids: options.ids,
 				isShowLogin: false
 			});
-			var uid = options.ids;
-			// wx.setStorageSync('ids', ids);
-			that.getUnits(token, uid);
+			that.getUnits(token, wx.getStorageSync('ids'));
 		}
 	},
 
 	//获取报修单位,部门
 	getUnits: function(token, uid) {
 		let that = this;
-		var token = wx.getStorageSync('token'),
-			uid = wx.getStorageSync('ids');
 		_cori.default.request('POST', 'Technician/getUnit', token, {
 			uid: uid
 		}).then(function(res) {

@@ -86,6 +86,17 @@ Page({
 			})
 		}
 	},
+
+	//获取企业性质
+	// getUnits: function() {
+	// 	let that = this;
+	// 	_cori.default.request('POST', 'Technician/getUnit', token, {
+			
+	// 	}).then(function(res) {
+			
+	// 	});
+	// },
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */

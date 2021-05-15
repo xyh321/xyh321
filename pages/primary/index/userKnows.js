@@ -24,12 +24,14 @@ Page({
 		});
 		this.getKnows();
 	},
-	
+
 	//获取用户须知
 	getKnows: function() {
 		let that = this;
 		var token = wx.getStorageSync('token');
-		_cori.default.request('POST', 'User/notice', token, {}).then(function(res) {
+		_cori.default.request('POST', 'User/notice', token, {
+			type: 1
+		}).then(function(res) {
 			that.setData({
 				text: res.data.data
 			})
