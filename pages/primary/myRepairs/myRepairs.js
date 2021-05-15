@@ -41,6 +41,18 @@ Page({
 		//撤销原因
 		cancelReason: '',
 	},
+	//点击放大
+	previewImg: function (e) {
+	  var index = e.currentTarget.dataset.index;
+	  var images = e.currentTarget.dataset.images;
+	  wx.previewImage({
+	    current: images[index], //当前图片地址
+	    urls: images, //所有要预览的图片的地址集合 数组形式
+	    success: function (res) {},
+	    fail: function (res) {},
+	    complete: function (res) {},
+	  })
+	},
 	//更改头部状态栏
 	changeStatus: function(e) {
 		// console.log(e.currentTarget.dataset.status);

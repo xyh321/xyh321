@@ -13,7 +13,7 @@
 		<view class="bg_fff radius5" style="z-index: 1;box-shadow: #cacaca 0px 0px 2px 1px;">
 			<navigator class="flex jc_b at_c bb p20" url="../my/basicInfo">
 				<view class="flex at_c">
-					<image src="../../../icons/problem.png" mode="widthFix" style="width: 50rpx;"></image>
+					<image src="../../../icons/problem.png" style="width: 50rpx;height:50rpx;"></image>
 					<view class="ml10">常见问题</view>
 				</view>
 				<view class="jiantou2"></view>
@@ -21,7 +21,7 @@
 			<button open-type="contact" class="flex jc_b at_c bb"
 				style="font-weight: normal;background-color: transparent;margin: 0 !important;padding: 20px !important;width: 100% !important;">
 				<view class="flex at_c">
-					<image src="../../../icons/kefu.png" mode="widthFix" style="width: 50rpx;"></image>
+					<image src="../../../icons/kefu.png" style="width: 50rpx;height:50rpx;"></image>
 					<view class="ml10">联系客服</view>
 				</view>
 				<view class="jiantou2"></view>

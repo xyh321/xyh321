@@ -35,6 +35,10 @@ Page({
 		apartIndex: 0,
 		apartArray: [],
 
+		gzIndex: null,
+		gzArray: [],
+		gzType: "",
+
 		listArr: [],
 
 		cori_root: app.globalData.cori_root,
@@ -64,9 +68,9 @@ Page({
 			titleHeight: statusBarHeight + 6,
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
-		
+
 		var ids = options.ids;
-		if(ids) {
+		if (ids) {
 			wx.setStorageSync('ids', ids);
 		}
 		var token = wx.getStorageSync('token');
@@ -86,9 +90,13 @@ Page({
 			console.log(options);
 			that.setData({
 				ids: options.ids,
+				bxType: options.type,
 				isShowLogin: false
 			});
+			var type = options.type;
+			wx.setStorageSync('type', type);
 			that.getUnits(token, wx.getStorageSync('ids'));
+			that.getGzType(token,wx.getStorageSync('ids'));
 		}
 	},
 
@@ -98,7 +106,7 @@ Page({
 		_cori.default.request('POST', 'Technician/getUnit', token, {
 			uid: uid
 		}).then(function(res) {
-			// console.log(res.data.data);
+			console.log('getUnits', res.data.data);
 			var unitArr = [],
 				listArr = res.data.data;
 
@@ -118,9 +126,31 @@ Page({
 		});
 	},
 
+	//获取故障类型
+	getGzType: function(token,uid) {
+		let that = this;
+		_cori.default.request('POST', 'Technician/getGzType', token, {
+			uid:uid
+		}).then(function(res) {
+			console.log('getGzType', res.data.data);
+			var gzArray = [],
+				newsArray = res.data.data;
+			newsArray.forEach(function(item, index) {
+				gzArray.push(item);
+				// apartArr.push(item.section);
+			});
+
+			console.log('gzArray', gzArray);
+			that.setData({
+				gzArray: gzArray
+			});
+		});
+	},
+
 	inputs: function(e) {
 		console.log(e);
 	},
+
 	//图片上传
 	oneImgUpload: function(e) {
 		let that = this;
@@ -165,7 +195,6 @@ Page({
 		});
 	},
 
-
 	//报修单位点击事件
 	bindUnit: function(e) {
 		console.log(e);
@@ -180,7 +209,7 @@ Page({
 			apartArray: apartArray,
 			//id
 			unit: listArr[unitIndex].id,
-			apartment: apartIndex
+			apartment: listArr[unitIndex].section[apartIndex].id
 		});
 	},
 	//报修部门点击事件
@@ -195,20 +224,36 @@ Page({
 			apartIndex: apartIndex,
 			apartment: listArr[unitIndex].section[apartIndex].id
 		})
+		var a =listArr[unitIndex].section[apartIndex].id;
+		console.log(a);
+	},
+	//故障类型点击事件
+	gzTypes: function(e) {
+		console.log(e);
+		let that = this;
+		var gzArray = that.data.gzArray,
+			gzIndex = e.detail.value;
+		// var gzArrays = gzArray[gzIndex].name;
+		console.error('gzArray', gzArray);
+		that.setData({
+			gzIndex: gzIndex,
+			gzType: gzArray[gzIndex].id,
+		});
 	},
 	//确认提交
 	confirmUpload: function() {
 		let that = this;
+
 		var token = wx.getStorageSync('token'),
 
-			type = that.data.type,
+			type = wx.getStorageSync('type'),
 			uid = that.data.ids,
 			bxType = that.data.bxType,
 
 			unit = that.data.unit,
 			section = that.data.apartment,
 
-			gzType = that.data.type,
+			gzType = that.data.gzType,
 			name = that.data.name,
 			mobile = that.data.phoneNumber,
 			site = that.data.address,
@@ -217,6 +262,77 @@ Page({
 			degree = that.data.urgent,
 
 			path = that.data.imgArr;
+		if (!unit) {
+			wx.showToast({
+				title: '报修单位为空',
+				icon: 'none',
+			})
+			return false;
+		};
+		if (!section) {
+			wx.showToast({
+				title: '报修部门为空',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!gzType) {
+			wx.showToast({
+				title: '故障类型为空',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!name) {
+			wx.showToast({
+				title: '姓名不可为空',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (mobile.trim().length != 11 || !/^1[3|4|5|6|7|8|9]\d{9}$/.test(mobile)) {
+			wx.showToast({
+				title: '手机号格式有误',
+				icon: 'none',
+			})
+			return false;
+		};
+		if (!site) {
+			wx.showToast({
+				title: '地点不可为空',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!gzDescription) {
+			wx.showToast({
+				title: '故障描述不可为空',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!mode) {
+			wx.showToast({
+				title: '报修方式未选择',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!degree) {
+			wx.showToast({
+				title: '紧急程度未选择',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!path) {
+			wx.showToast({
+				title: '上传故障图片不可为空',
+				icon: 'none',
+			})
+			return false;
+		}
+		
 		_cori.default.request('POST', 'Technician/addGeneral', token, {
 			type: bxType,
 			uid: uid,
@@ -261,6 +377,7 @@ Page({
 		})
 	},
 	phoneNumber: function(e) {
+
 		this.setData({
 			phoneNumber: e.detail.value
 		})

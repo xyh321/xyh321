@@ -35,7 +35,13 @@
 				故障类型
 				<span style="color: #FF2D2D;" wx:if="{{bxType=='company'}}">*</span>
 			</view>
-			<input type="text" bindinput="type" placeholder="请选择故障类型" />
+			<!-- <input type="text" bindinput="type" placeholder="请选择故障类型" /> -->
+			<picker bindchange="gzTypes" value="{{gzIndex}}" range="{{gzArray}}" range-key="name">
+				<view class="picker flex at_c">
+					<input type="text" placeholder="请选择故障类型" value="{{gzArray[gzIndex].name}}" disabled></input>
+					<image src="../../../icons/bottom.png" style="width: 16rpx;height: 12rpx; margin-left: -90rpx;" mode="widthFix"></image>
+				</view>
+			</picker>
 		</view>
 		<view class="name fc">
 			<view class="start">
@@ -49,7 +55,7 @@
 				报修电话
 				<span style="color: #FF2D2D;">*</span>
 			</view>
-			<input type="number" bindinput="phoneNumber" placeholder="请输入报修电话" />
+			<input type="number" bindinput="phoneNumber" maxlength="11" placeholder="请输入报修电话" />
 		</view>
 		<view class="address fc">
 			<view class="start">

@@ -81,7 +81,7 @@
 				报修电话
 				<span style="color: #FF2D2D;">*</span>
 			</view>
-			<input type="number" bindinput="phoneNumber" placeholder="请输入报修电话" />
+			<input type="number" bindinput="phoneNumber" placeholder="请输入报修电话" maxlength="11" />
 		</view>
 		<view class="describe fc">
 			<view>

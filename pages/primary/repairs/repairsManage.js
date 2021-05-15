@@ -32,7 +32,7 @@ Page({
 		imgArr: []
 	},
 
-	getUserInfo: function (e) {
+	getUserInfo: function(e) {
 		let that = this;
 		var userinfo = wx.getStorageSync('userinfo');
 		console.log('userinfo', userinfo);
@@ -46,18 +46,18 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function (options) {
+	onLoad: function(options) {
 		let that = this;
 		var statusBarHeight = that.data.statusBarHeight;
 		that.setData({
 			titleHeight: statusBarHeight + 6,
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
-		
+
 		var uid = options.ids,
 			type = options.type,
 			facilityId = options.facilityId;
-		if(facilityId) {
+		if (facilityId) {
 			wx.setStorageSync('facilityId', facilityId);
 		}
 		var token = wx.getStorageSync('token');
@@ -85,11 +85,11 @@ Page({
 	},
 
 	//获取设备报修信息
-	getEqList: function (token, facilityId) {
+	getEqList: function(token, facilityId) {
 		let that = this;
 		_cori.default.request('POST', 'Technician/getFacility', token, {
 			uid: facilityId
-		}).then(function (res) {
+		}).then(function(res) {
 			// console.log(res.data.data);
 			that.setData({
 				messageList: res.data.data
@@ -98,7 +98,7 @@ Page({
 	},
 
 	//图片上传
-	oneImgUpload: function (e) {
+	oneImgUpload: function(e) {
 		let that = this;
 		var coriander_requset = that.data.coriander_requset,
 			token = wx.getStorageSync('token'),
@@ -107,7 +107,7 @@ Page({
 			count: 1,
 			sizeType: ['original', 'compressed'],
 			sourceType: ['album', 'camera'],
-			success: function (res) {
+			success: function(res) {
 				console.log('选择图片', res);
 				var imgs = res.tempFilePaths[0];
 				wx.uploadFile({
@@ -130,7 +130,7 @@ Page({
 		})
 	},
 	//图片上传删除
-	shanchu: function (e) {
+	shanchu: function(e) {
 		let that = this;
 		var imgArr = that.data.imgArr,
 			index = e.currentTarget.dataset.index;
@@ -140,7 +140,7 @@ Page({
 		});
 	},
 	//确认提交
-	submit: function () {
+	submit: function() {
 		let that = this;
 		var token = wx.getStorageSync('token'),
 			uid = that.data.ids,
@@ -154,6 +154,48 @@ Page({
 			mode = that.data.repairsType,
 			degree = that.data.urgent,
 			path = that.data.imgArr;
+		if (!name) {
+			wx.showToast({
+				title: '姓名不可为空',
+				icon: 'none',
+			})
+			return false;
+		};
+		if (mobile.trim().length != 11 || !/^1[3|4|5|6|7|8|9]\d{9}$/.test(mobile)) {
+			wx.showToast({
+				title: '手机号格式有误',
+				icon: 'none',
+			})
+			return false;
+		};
+		if (!gzDescription) {
+			wx.showToast({
+				title: '故障描述不可为空',
+				icon: 'none',
+			})
+			return false;
+		};
+		if (!mode) {
+			wx.showToast({
+				title: '报修方式未选择',
+				icon: 'none',
+			})
+			return false;
+		};
+		if (!degree) {
+			wx.showToast({
+				title: '紧急程度未选择',
+				icon: 'none',
+			})
+			return false;
+		};
+		if (!path) {
+			wx.showToast({
+				title: '上传故障图片不可为空',
+				icon: 'none',
+			})
+			return false;
+		};
 		_cori.default.request('POST', 'Technician/addGeneral', token, {
 			type: type,
 			uid: uid,
@@ -164,7 +206,7 @@ Page({
 			degree: degree,
 			facilityId: facilityId,
 			path: path,
-		}).then(function (res) {
+		}).then(function(res) {
 			console.log(res);
 			if (res.data.code == 200) {
 				wx.navigateTo({
@@ -174,27 +216,27 @@ Page({
 		});
 	},
 
-	name: function (e) {
+	name: function(e) {
 		this.setData({
 			name: e.detail.value
 		})
 	},
-	phoneNumber: function (e) {
+	phoneNumber: function(e) {
 		this.setData({
 			phoneNumber: e.detail.value
 		})
 	},
-	describe: function (e) {
+	describe: function(e) {
 		this.setData({
 			describe: e.detail.value
 		})
 	},
-	repairsType: function (e) {
+	repairsType: function(e) {
 		this.setData({
 			repairsType: e.detail.value
 		})
 	},
-	urgent: function (e) {
+	urgent: function(e) {
 		this.setData({
 			urgent: e.detail.value
 		})
@@ -202,49 +244,49 @@ Page({
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
-	onReady: function () {
+	onReady: function() {
 
 	},
 
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
-	onShow: function () {
+	onShow: function() {
 
 	},
 
 	/**
 	 * 生命周期函数--监听页面隐藏
 	 */
-	onHide: function () {
+	onHide: function() {
 
 	},
 
 	/**
 	 * 生命周期函数--监听页面卸载
 	 */
-	onUnload: function () {
+	onUnload: function() {
 
 	},
 
 	/**
 	 * 页面相关事件处理函数--监听用户下拉动作
 	 */
-	onPullDownRefresh: function () {
+	onPullDownRefresh: function() {
 
 	},
 
 	/**
 	 * 页面上拉触底事件的处理函数
 	 */
-	onReachBottom: function () {
+	onReachBottom: function() {
 
 	},
 
 	/**
 	 * 用户点击右上角分享
 	 */
-	onShareAppMessage: function () {
+	onShareAppMessage: function() {
 
 	}
 })

@@ -2,7 +2,7 @@ page {
 	background-color: #F1F1F1;
 }
 
-.listFirst{
+.listFirst {
 	margin-top: 300rpx;
 }
 
@@ -87,8 +87,15 @@ page {
 	align-items: flex-start;
 }
 
-.cardContent span {
+.cardContent span,
+.reImg {
 	margin-left: 40rpx;
+}
+
+.faultImg {
+	width: 120rpx;
+	height: 120rpx;
+	margin: 0 8px 8px 0;
 }
 
 .allot {
@@ -123,7 +130,7 @@ textarea {
 	height: 200rpx;
 }
 
-.but button{
+.but button {
 	width: 144rpx !important;
 	height: 52rpx;
 	background-color: #0099FF;
@@ -135,7 +142,7 @@ textarea {
 	color: #FFFFFF;
 }
 
-.length{
+.length {
 	text-align: center;
 	margin-top: 500rpx;
 	/* padding: 50% 50%; */

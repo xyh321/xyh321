@@ -83,7 +83,7 @@ Page({
 	getBannerList: function() {
 		let that = this;
 		var token = wx.getStorageSync('token');
-		_cori.default.request('POST', 'User/banner', token, {}).then(function(res) {
+		_cori.default.request('POST', 'User/banner', null, {}).then(function(res) {
 			// console.log(res.data.msg);
 			that.setData({
 				bannerList: res.data.msg
@@ -95,7 +95,7 @@ Page({
 	getCompanyList: function() {
 		let that = this;
 		var token = wx.getStorageSync('token');
-		_cori.default.request('POST', 'User/companyIntro', token, {}).then(function(res) {
+		_cori.default.request('POST', 'User/companyIntro', null, {}).then(function(res) {
 			// console.log(res.data.msg);
 			that.setData({
 				companyList: res.data.msg

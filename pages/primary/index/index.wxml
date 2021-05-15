@@ -8,7 +8,7 @@
 				indicator-active-color="#ffffff">
 				<swiper-item wx:for="{{bannerList}}" wx:key="id">
 					<navigator>
-						<image mode="widthFix" src="{{item.image}}"></image>
+						<image mode="widthFix" src="{{item.image}}" style="height: 420rpx;"></image>
 					</navigator>
 				</swiper-item>
 			</swiper>
@@ -35,7 +35,7 @@
 			<view class="comTitle">企业展示</view>
 			<view class="company">
 				<view wx:for="{{companyList}}" wx:key="id" style="margin-right: 20rpx;">
-					<image mode="widthFix" src="{{item.image}}"></image>
+					<image mode="aspectFill" src="{{item.image}}" class="displayImg"></image>
 					<view class="comName tc">
 						{{item.title}}
 					</view>
