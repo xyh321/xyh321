@@ -13,7 +13,9 @@
 	,"pages/primary/myRepairs/appraise"
 	,"pages/primary/myRepairs/step"
 	,"pages/primary/my/feedback"
-	,"pages/primary/my/index"
+  ,"pages/primary/my/index"
+  ,"pages/primary/my/problem"
+  ,"pages/primary/my/commonProblem"
 
     ,"pages/technology/task/administration"
     ,"pages/technology/task/selectTechnician"

@@ -124,6 +124,7 @@ Page({
 		}).then(function(res) {
 			console.log(res);
 			// that.getList(token, limit, status, page);
+			that.getList(token, limit, status, 1);
 		});
 	},
 

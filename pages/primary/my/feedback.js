@@ -33,6 +33,27 @@ Page({
 			phone = this.data.phone;
 		// console.log(textarea, name, phone);
 		// return;
+		if (!textarea) {
+			wx.showToast({
+				title: '反馈内容不可为空！',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!name) {
+			wx.showToast({
+				title: '姓名不可为空！',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!phone) {
+			wx.showToast({
+				title: '电话不可为空！',
+				icon: 'none',
+			})
+			return false;
+		}
 		_cori.default.request('POST', 'sundry/feedBack', null, {
 			text: textarea,
 			name: name,

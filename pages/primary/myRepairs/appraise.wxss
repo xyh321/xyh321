@@ -114,4 +114,5 @@ van-rate {
 	margin-left: 50rpx;
 	background-color: #158FE8;
 	color: #fff;
+	margin-bottom: 200rpx;
 }

@@ -28,10 +28,6 @@ Page({
 				_this.setData({
 					qRCodeMsg: res.result
 				});
-				wx.showToast({
-					title: '成功',
-					duration: 2000
-				})
 			}
 		})
 	},

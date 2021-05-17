@@ -20,7 +20,7 @@
 			</view>
 			<view class="phone fc">
 				<view>电话</view>
-				<input type="number" bindinput="phone" value="{{phone}}" />
+				<input type="number" bindinput="phone" value="{{phone}}" maxlength="11"/>
 			</view>
 		</view>
 		<view class="bottom">

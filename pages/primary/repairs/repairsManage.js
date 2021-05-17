@@ -57,8 +57,11 @@ Page({
 		var uid = options.ids,
 			type = options.type,
 			facilityId = options.facilityId;
+		console.log(options);
 		if (facilityId) {
 			wx.setStorageSync('facilityId', facilityId);
+			wx.setStorageSync('type', type);
+			wx.setStorageSync('uid', uid);
 		}
 		var token = wx.getStorageSync('token');
 		if (!token) {
@@ -74,12 +77,12 @@ Page({
 				}
 			});
 		} else if (token) {
-			console.log(options);
 			that.setData({
 				uid: uid,
 				type: type,
 				isShowLogin: false
 			});
+
 			that.getEqList(token, wx.getStorageSync('facilityId'));
 		}
 	},
@@ -143,8 +146,8 @@ Page({
 	submit: function() {
 		let that = this;
 		var token = wx.getStorageSync('token'),
-			uid = that.data.ids,
-			type = that.data.type,
+			uid = wx.getStorageSync('uid'),
+			type = wx.getStorageSync('type'),
 			facilityId = that.data.facilityId,
 
 			// bxType ="facility",
@@ -208,11 +211,19 @@ Page({
 			path: path,
 		}).then(function(res) {
 			console.log(res);
+
 			if (res.data.code == 200) {
-				wx.navigateTo({
-					url: '../myRepairs/myRepairs',
-				})
+				wx.showToast({
+					title: '提交成功！',
+					icon: 'none',
+				});
+				setTimeout(function() {
+					wx.navigateTo({
+						url: '../myRepairs/myRepairs',
+					})
+				}, 1500);
 			}
+
 		});
 	},
 

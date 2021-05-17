@@ -92,7 +92,7 @@ Page({
 
 		var trueArr = [],
 			List = that.data.List;
-		console.log(List);
+		// console.log(List);
 		// for (let index = 0; index < List.length; index++) {
 		// 	if (List[index].checked) {
 		// 		trueArr.push(List[index].name)
@@ -103,9 +103,45 @@ Page({
 			if (array[index].checked) {
 				trueArr.push(List[index].name)
 			}
-
+		
 		});
 		var trueStr = trueArr.join(",");
+		if (!value) {
+			wx.showToast({
+				title: '请选择处理时效！',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!value2) {
+			wx.showToast({
+				title: '请选择服务态度！',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!value3) {
+			wx.showToast({
+				title: '请选择技术水平！',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (trueArr.length==0) {
+			wx.showToast({
+				title: '请选择评价词！',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!textarea) {
+			wx.showToast({
+				title: '请填写评价内容！',
+				icon: 'none',
+			})
+			return false;
+		}
+	
 
 		// console.log(trueStr);
 		_cori.default.request('POST', 'Technician/evaluate', token, {

@@ -69,9 +69,11 @@ Page({
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
 
-		var ids = options.ids;
+		var ids = options.ids,
+			type = options.type;
 		if (ids) {
 			wx.setStorageSync('ids', ids);
+			wx.setStorageSync('type', type);
 		}
 		var token = wx.getStorageSync('token');
 		if (!token) {
@@ -87,16 +89,15 @@ Page({
 				}
 			});
 		} else if (token) {
-			console.log(options);
+			// console.log(options);
 			that.setData({
 				ids: options.ids,
 				bxType: options.type,
 				isShowLogin: false
 			});
 			var type = options.type;
-			wx.setStorageSync('type', type);
 			that.getUnits(token, wx.getStorageSync('ids'));
-			that.getGzType(token,wx.getStorageSync('ids'));
+			that.getGzType(token, wx.getStorageSync('ids'));
 		}
 	},
 
@@ -127,10 +128,10 @@ Page({
 	},
 
 	//获取故障类型
-	getGzType: function(token,uid) {
+	getGzType: function(token, uid) {
 		let that = this;
 		_cori.default.request('POST', 'Technician/getGzType', token, {
-			uid:uid
+			uid: uid
 		}).then(function(res) {
 			console.log('getGzType', res.data.data);
 			var gzArray = [],
@@ -224,7 +225,7 @@ Page({
 			apartIndex: apartIndex,
 			apartment: listArr[unitIndex].section[apartIndex].id
 		})
-		var a =listArr[unitIndex].section[apartIndex].id;
+		var a = listArr[unitIndex].section[apartIndex].id;
 		console.log(a);
 	},
 	//故障类型点击事件
@@ -243,11 +244,10 @@ Page({
 	//确认提交
 	confirmUpload: function() {
 		let that = this;
-
 		var token = wx.getStorageSync('token'),
 
 			type = wx.getStorageSync('type'),
-			uid = that.data.ids,
+			uid = wx.getStorageSync('ids'),
 			bxType = that.data.bxType,
 
 			unit = that.data.unit,
@@ -332,9 +332,9 @@ Page({
 			})
 			return false;
 		}
-		
+
 		_cori.default.request('POST', 'Technician/addGeneral', token, {
-			type: bxType,
+			type: type,
 			uid: uid,
 			bxType: bxType,
 
@@ -352,11 +352,16 @@ Page({
 		}).then(function(res) {
 			console.log(res);
 			if (res.data.code == 200) {
-				wx.navigateTo({
-					url: '../myRepairs/myRepairs',
-				})
+				wx.showToast({
+					title: '提交成功！',
+					icon: 'none',
+				});
+				setTimeout(function() {
+					wx.navigateTo({
+						url: '../myRepairs/myRepairs',
+					})
+				}, 1500);
 			}
-
 		});
 	},
 

@@ -38,6 +38,7 @@ Page({
 	},
 
 	onLoad: function(options) {
+	
 		let that = this;
 		var statusBarHeight = that.data.statusBarHeight;
 		that.setData({
