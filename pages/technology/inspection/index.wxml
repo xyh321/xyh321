@@ -43,7 +43,7 @@
         <view class="flex jc_s at_s fw_w mt10" style="width: 100%;">
           <view wx:for="{{item.images}}" wx:key="indexs" class="evaluateImg" wx:for-item="items" wx:for-index="indexs">
             <view class="goods_cell_img" style="background-image: url({{items}});"></view>
-            <view wx:if="{{currentStatus!=3}}" class="shanchu" data-index="{{index}}" data-indexs="{{indexs}}"
+            <view wx:if="{{currentStatus==2}}" class="shanchu" data-index="{{index}}" data-indexs="{{indexs}}"
               bindtap="shanchu">✖</view>
           </view>
           <image bindtap="oneImgUpload" class="evaluateImg" src="../../../resource/technology/upimg.png"
@@ -56,7 +56,7 @@
           <view class="task_btn" bindtap="acceptTask" data-id="{{item.id}}">确认巡检</view>
         </block>
         <block wx:if="{{currentStatus==2}}">
-          <view class="task_btn" bindtap="confirmTask" data-id="{{item.id}}">确认完成</view>
+          <view class="task_btn" bindtap="confirmTask" data-id="{{item.id}}" data-index="{{index}}">确认完成</view>
         </block>
       </view>
     </view>

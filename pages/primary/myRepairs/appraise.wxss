@@ -48,14 +48,14 @@ van-rate {
 
 .choose {
 	display: flex;
-	align-items: center;
 	flex-wrap: wrap;
 	justify-content: space-around;
 	padding-bottom: 50rpx;
+	/* border: 1px solid #000; */
 }
 
 .list {
-	width: 96rpx;
+	width: 100rpx;
 	height: 20rpx;
 	background-color: #F1F1F1;
 	padding: 15rpx 20rpx;
@@ -67,7 +67,7 @@ van-rate {
 }
 
 .check {
-	width: 96rpx;
+	width: 100rpx;
 	height: 20rpx;
 	background-color: #158FE8;
 	color: #fff;

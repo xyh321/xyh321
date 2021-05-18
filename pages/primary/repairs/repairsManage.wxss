@@ -19,6 +19,23 @@ page {
 	color: #202020;
 }
 
+.unit,
+.apartment,
+.type {
+	border-bottom: 1px solid #FAFAFA;
+	font-size: 24rpx;
+	font-family: PingFang SC;
+	font-weight: 400;
+	margin: 30rpx;
+	padding-bottom: 30rpx;
+	margin-top: 0 !important;
+}
+
+.start {
+	width: 120rpx;
+	/* border: 1px solid #000; */
+}
+
 .eqName,
 .eqType,
 .eqNumber,

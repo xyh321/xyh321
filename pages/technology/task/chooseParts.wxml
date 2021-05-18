@@ -30,7 +30,7 @@
             <input type="text" placeholder="请选择配件" value="{{partsArray[item.idx].name}}" disabled></input>
           </picker>
           <text class="ml5 mr5">*</text>
-          <input class="nums" type="text" data-index="{{index}}" value="{{item.nums}}" placeholder="配件数量" bindinput="changeNums"></input>
+          <input class="nums" type="number" data-index="{{index}}" value="{{item.nums}}" placeholder="配件数量" bindinput="changeNums"></input>
         </view>
 
         <image bindtap="delParts" data-index="{{index}}" class="icon1 pa" src="../../../resource/technology/del.png"

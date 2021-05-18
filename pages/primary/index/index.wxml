@@ -7,9 +7,7 @@
 			<swiper autoplay indicator-dots circular interval="2000" indicator-color="#C0C1C1"
 				indicator-active-color="#ffffff">
 				<swiper-item wx:for="{{bannerList}}" wx:key="id">
-					<navigator>
-						<image mode="widthFix" src="{{item.image}}" style="height: 420rpx;"></image>
-					</navigator>
+					<image mode="widthFix" src="{{item.image}}" style="height: 420rpx;"></image>
 				</swiper-item>
 			</swiper>
 		</view>

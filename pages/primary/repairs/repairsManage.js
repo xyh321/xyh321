@@ -16,6 +16,19 @@ Page({
 		type: "",
 		facilityId: "",
 
+		unitIndex: null,
+		unitArray: [],
+
+		apartIndex: 0,
+		apartArray: [],
+
+		gzIndex: null,
+		gzArray: [],
+
+		unit: '',
+		apartment: '',
+		gzType: '',
+
 		//设备信息列表
 		messageList: {},
 		//报修信息列表
@@ -24,6 +37,7 @@ Page({
 		name: "",
 		phoneNumber: '',
 		describe: '',
+
 		repairsType: '',
 		urgent: '',
 
@@ -82,9 +96,108 @@ Page({
 				type: type,
 				isShowLogin: false
 			});
-
+			that.getUnits(token, wx.getStorageSync('uid'));
+			that.getGzType(token, wx.getStorageSync('uid'));
 			that.getEqList(token, wx.getStorageSync('facilityId'));
+
+			that.repairsTypeCkecked();
+			that.urgentChecked();
 		}
+	},
+
+	//获取报修单位,部门
+	getUnits: function(token, uid) {
+		let that = this;
+		_cori.default.request('POST', 'Technician/getUnit', token, {
+			uid: uid
+		}).then(function(res) {
+			console.log('getUnits', res.data.data);
+			var unitArr = [],
+				listArr = res.data.data;
+
+			listArr.forEach(function(item, index) {
+				unitArr.push(item.name);
+				// apartArr.push(item.section);
+			});
+
+			// for (let index = 0; index < apartArr.length; index++) {
+			// 	console.log(apartArr[index]);
+			// };
+			that.setData({
+				unitArray: unitArr,
+				listArr: listArr
+				// apartArray: apartArr
+			});
+		});
+	},
+
+	//获取故障类型
+	getGzType: function(token, uid) {
+		let that = this;
+		_cori.default.request('POST', 'Technician/getGzType', token, {
+			uid: uid
+		}).then(function(res) {
+			console.log('getGzType', res.data.data);
+			var gzArray = [],
+				newsArray = res.data.data;
+			newsArray.forEach(function(item, index) {
+				gzArray.push(item);
+				// apartArr.push(item.section);
+			});
+
+			console.log('gzArray', gzArray);
+			that.setData({
+				gzArray: gzArray
+			});
+		});
+	},
+
+	//报修单位点击事件
+	bindUnit: function(e) {
+		console.log(e);
+		let that = this;
+		var listArr = that.data.listArr,
+			unitIndex = e.detail.value,
+			apartIndex = that.data.apartIndex;
+		// console.log(listArr);
+		var apartArray = listArr[unitIndex].section
+		that.setData({
+			unitIndex: unitIndex,
+			apartArray: apartArray,
+			//id
+			unit: listArr[unitIndex].id,
+			apartment: listArr[unitIndex].section[apartIndex].id
+		});
+	},
+
+	//报修部门点击事件
+	apartments: function(e) {
+		// console.log(e);
+		let that = this;
+		var apartIndex = e.detail.value,
+			unitIndex = that.data.unitIndex,
+			listArr = that.data.listArr;
+		// console.log(listArr);
+		that.setData({
+			apartIndex: apartIndex,
+			apartment: listArr[unitIndex].section[apartIndex].id
+		})
+		var a = listArr[unitIndex].section[apartIndex].id;
+		console.log(a);
+	},
+
+	//故障类型点击事件
+	gzTypes: function(e) {
+		console.log(e);
+		let that = this;
+		var gzArray = that.data.gzArray,
+			gzIndex = e.detail.value;
+		// var gzArrays = gzArray[gzIndex].name;
+		console.error('gzArray', gzArray);
+		that.setData({
+			gzIndex: gzIndex,
+			gzType: gzArray[gzIndex].id,
+		});
 	},
 
 	//获取设备报修信息
@@ -95,7 +208,8 @@ Page({
 		}).then(function(res) {
 			// console.log(res.data.data);
 			that.setData({
-				messageList: res.data.data
+				messageList: res.data.data,
+				site: res.data.data.site
 			})
 		});
 	},
@@ -149,6 +263,11 @@ Page({
 			uid = wx.getStorageSync('uid'),
 			type = wx.getStorageSync('type'),
 			facilityId = that.data.facilityId,
+			site = that.data.site,
+
+			unit = that.data.unit,
+			section = that.data.apartment,
+			gzType = that.data.gzType,
 
 			// bxType ="facility",
 			name = that.data.name,
@@ -171,6 +290,27 @@ Page({
 			})
 			return false;
 		};
+		if (!unit) {
+			wx.showToast({
+				title: '报修单位为空',
+				icon: 'none',
+			})
+			return false;
+		};
+		if (!section) {
+			wx.showToast({
+				title: '报修部门为空',
+				icon: 'none',
+			})
+			return false;
+		}
+		if (!gzType) {
+			wx.showToast({
+				title: '故障类型为空',
+				icon: 'none',
+			})
+			return false;
+		}
 		if (!gzDescription) {
 			wx.showToast({
 				title: '故障描述不可为空',
@@ -200,6 +340,11 @@ Page({
 			return false;
 		};
 		_cori.default.request('POST', 'Technician/addGeneral', token, {
+			unit: unit,
+			section: section,
+			gzType: gzType,
+			site: site,
+
 			type: type,
 			uid: uid,
 			name: name,
@@ -243,13 +388,32 @@ Page({
 		})
 	},
 	repairsType: function(e) {
+		var a = e.detail.value;
+		var b = Number(a);
+		// console.log(typeof (b));
 		this.setData({
-			repairsType: e.detail.value
+			repairsType: b
+		})
+	},
+	repairsTypeCkecked: function() {
+		var a = 1;
+		this.setData({
+			repairsType: a
 		})
 	},
 	urgent: function(e) {
+		var a = e.detail.value;
+		var b = Number(a);
+		// console.log(typeof (b));
 		this.setData({
-			urgent: e.detail.value
+			urgent: b
+		})
+	},
+
+	urgentChecked: function() {
+		var a = 1;
+		this.setData({
+			urgent: a
 		})
 	},
 	/**

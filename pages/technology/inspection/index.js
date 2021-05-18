@@ -39,10 +39,13 @@ Page({
   },
   confirmTask: function (e) {
     let that = this;
-    var path = that.data.imgArr,
+    var list = that.data.list,
+      index = e.currentTarget.dataset.index,
+      path = list[index].imgArr,
       token = that.data.token,
       status = that.data.currentStatus,
       oid = e.currentTarget.dataset.id;
+    console.log('path', path);
     wx.showModal({
       title: '提示',
       content: '确认完成巡检吗？',
@@ -119,6 +122,7 @@ Page({
             var res = JSON.parse(res.data);
             console.error('res', res);
             list[index].images.push(cori_root + res.data);
+            list[index].imgArr.push(res.data);
             that.setData({
               list: list
             })
@@ -132,7 +136,8 @@ Page({
     var list = that.data.list,
       index = e.currentTarget.dataset.index,
       indexs = e.currentTarget.dataset.indexs;
-      list[index].images.splice(indexs, 1);
+    list[index].images.splice(indexs, 1);
+    list[index].imgArr.splice(indexs, 1);
     that.setData({
       list: list
     });

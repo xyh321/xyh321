@@ -37,6 +37,7 @@ Page({
 
 		gzIndex: null,
 		gzArray: [],
+
 		gzType: "",
 
 		listArr: [],
@@ -98,6 +99,8 @@ Page({
 			var type = options.type;
 			that.getUnits(token, wx.getStorageSync('ids'));
 			that.getGzType(token, wx.getStorageSync('ids'));
+			that.repairsTypeCkecked();
+			that.urgentChecked();
 		}
 	},
 
@@ -398,13 +401,31 @@ Page({
 		})
 	},
 	repairsType: function(e) {
+		var a = e.detail.value;
+		var b = Number(a);
+		// console.log(typeof (b));
 		this.setData({
-			repairsType: e.detail.value
+			repairsType: b
+		})
+	},
+	repairsTypeCkecked:function(){
+		var a = 1;
+		this.setData({
+			repairsType: a
 		})
 	},
 	urgent: function(e) {
+		var a = e.detail.value;
+		var b = Number(a);
+		// console.log(typeof (b));
 		this.setData({
-			urgent: e.detail.value
+			urgent: b
+		})
+	},
+	urgentChecked:function(){
+		var a = 1;
+		this.setData({
+			urgent: a
 		})
 	},
 	/**
