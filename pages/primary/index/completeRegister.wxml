@@ -9,12 +9,21 @@
 		<view class="comType fc">
 			<view class="type">企业性质</view>
 			<view class="companys"></view>
-			<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+			
+			<!-- <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
 				<view class="picker">
 					{{array[index]}}
 					<image src="../../../icons/bottom.png" style="width: 16rpx;height: 12rpx;" mode="widthFix"></image>
 				</view>
+			</picker> -->
+			
+			<picker bindchange="bindPickerChange" value="{{companyIndex}}" range="{{companyArray}}" range-key="name">
+				<view class="picker flex at_c">
+					<input type="text" placeholder="请选择企业性质" value="{{companyArray[companyIndex].name}}" disabled></input>
+					<image src="../../../icons/bottom.png" style="width: 16rpx;height: 12rpx; margin-left: -90rpx;" mode="widthFix"></image>
+				</view>
 			</picker>
+			
 		</view>
 		<view class="personName fc">
 			<view class="person">负责人</view>

@@ -178,9 +178,9 @@ Page({
       })
       return false;
     }
-    if (!mobile) {
+    if (mobile.trim().length != 11 || !/^1[3|4|5|6|7|8|9]\d{9}$/.test(mobile)) {
       wx.showToast({
-        title: '请输入联系方式',
+        title: '联系方式有误',
         icon: 'none'
       })
       return false;
@@ -228,13 +228,16 @@ Page({
   onLoad: function (options) {
     let that = this;
     var token = wx.getStorageSync('token'),
+      userinfo = wx.getStorageSync('userinfo'),
       oid = options.oid;
     var statusBarHeight = that.data.statusBarHeight;
     that.setData({
       titleHeight: statusBarHeight + 6,
       titleHeight1: statusBarHeight + 6 + 40,
       token: token,
-      oid: oid
+      oid: oid,
+      name: userinfo.nickname,
+      mobile: userinfo.mobile
     })
   },
 

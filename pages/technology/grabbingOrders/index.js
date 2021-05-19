@@ -75,6 +75,9 @@ Page({
       console.log('是否开启抢单', res.data);
       var status = res.data.data;
       if (status === 1) {
+        wx.showLoading({
+          title: '加载中',
+        })
         that.getlist(token, 1);
       }
       that.setData({
@@ -93,9 +96,6 @@ Page({
       titleHeight: statusBarHeight + 6,
       titleHeight1: statusBarHeight + 6 + 40,
       token: token
-    })
-    wx.showLoading({
-      title: '加载中',
     })
     that.isGrabPrivilege(token);
   },

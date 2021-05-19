@@ -16,7 +16,10 @@ Page({
       idx: null,
       name: '',
       nums: null
-    }]
+    }],
+
+    claimant: '',
+    mobile: ''
   },
   claimant: function (e) {
     let that = this;
@@ -25,11 +28,11 @@ Page({
       claimant: value
     })
   },
-  section: function (e) {
+  mobile: function (e) {
     let that = this;
     var value = e.detail.value;
     that.setData({
-      section: value
+      mobile: value
     })
   },
   getConsumeList: function (token) {
@@ -116,7 +119,7 @@ Page({
       oid = that.data.oid,
       code = that.data.code,
       claimant = that.data.claimant,
-      section = that.data.section;
+      mobile = that.data.mobile;
 
     if (!claimant) {
       wx.showToast({
@@ -126,9 +129,9 @@ Page({
       return false;
     }
 
-    if (!section) {
+    if (mobile.trim().length != 11 || !/^1[3|4|5|6|7|8|9]\d{9}$/.test(mobile)) {
       wx.showToast({
-        title: '请输入提交部门',
+        title: '联系方式有误',
         icon: 'none'
       })
       return false;
@@ -148,7 +151,7 @@ Page({
       oid: oid,
       code: code,
       claimant: claimant,
-      section: section,
+      mobile: mobile,
       parts: JSON.stringify(partsNew)
     }).then(function (res) {
       console.log('保存配件申请', res)
@@ -178,6 +181,7 @@ Page({
   onLoad: function (options) {
     let that = this;
     var token = wx.getStorageSync('token'),
+      userinfo = wx.getStorageSync('userinfo'),
       code = options.code,
       oid = options.oid;
     var statusBarHeight = that.data.statusBarHeight;
@@ -186,7 +190,9 @@ Page({
       titleHeight1: statusBarHeight + 6 + 40,
       token: token,
       oid: oid,
-      code: code
+      code: code,
+      claimant: userinfo.nickname,
+      mobile: userinfo.mobile
     })
     that.getConsumeList(token)
   },

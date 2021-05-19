@@ -19,9 +19,9 @@
           "scene": null
         },
         {
-          "name": "普通用户-我的报修评价",
+          "name": "普通用户-立即评价",
           "pathName": "pages/primary/myRepairs/appraise",
-          "query": "",
+          "query": "id=280",
           "scene": null
         },
         {

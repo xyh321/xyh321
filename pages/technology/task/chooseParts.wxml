@@ -11,11 +11,11 @@
   </view>
   <view class="cell at_c">
     <view class="title">提交人<text class="must">*</text></view>
-    <input type="text" placeholder="请输入姓名" bindinput="claimant"></input>
+    <input type="text" placeholder="请输入姓名" bindinput="claimant" value="{{claimant}}"></input>
   </view>
   <view class="cell at_c">
-    <view class="title">提交部门<text class="must">*</text></view>
-    <input type="text" placeholder="请输入提交部门" bindinput="section"></input>
+    <view class="title">联系方式<text class="must">*</text></view>
+    <input type="number" maxlength="11" placeholder="请输入联系方式" bindinput="mobile" value="{{mobile}}"></input>
   </view>
   <view class="cell">
     <view class="title">配件更换<text class="must">*</text></view>

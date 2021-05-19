@@ -99,13 +99,17 @@ Page({
 		// 	};
 		// };
 		List.forEach(function(item, index, array) {
-			console.log();
 			if (array[index].checked) {
 				trueArr.push(List[index].name)
 			}
-		
 		});
 		var trueStr = trueArr.join(",");
+		console.log('trueStr',trueStr);
+		console.log('trueArr',trueArr);
+		// return false;
+		that.setData({
+			selectedArr:trueStr
+		});
 		if (!value) {
 			wx.showToast({
 				title: '请选择处理时效！',
@@ -127,7 +131,7 @@ Page({
 			})
 			return false;
 		}
-		if (trueArr.length==0) {
+		if (trueArr.length == 0) {
 			wx.showToast({
 				title: '请选择评价词！',
 				icon: 'none',
@@ -141,7 +145,7 @@ Page({
 			})
 			return false;
 		}
-	
+
 
 		// console.log(trueStr);
 		_cori.default.request('POST', 'Technician/evaluate', token, {
@@ -153,16 +157,27 @@ Page({
 			cont: textarea
 		}).then(function(res) {
 			console.log(res);
-			if(res.data.code==200){
+			if (res.data.code == 200) {
 				wx.navigateTo({
 					url: '../myRepairs/myRepairs',
 				})
 			}
 		});
 	},
-	/**
-	 * 生命周期函数--监听页面加载
-	 */
+	//延时返回
+	// timeBack: function() {
+	// 	let that = this;
+	// 	var value = that.data.value,
+	// 		value2 = that.data.value2,
+	// 		value3 = that.data.value3,
+	// 		textarea = that.data.textarea,
+	// 		selectedArr = that.data.selectedArr;
+	// 		if(value==0&&value2==0&&value3==0&&textarea==0&&selectedArr.length==0){
+	// 			wx.navigateTo({
+	// 				url: '../myRepairs/myRepairs',
+	// 			})
+	// 		}
+	// },
 	onLoad: function(options) {
 		let that = this;
 		var statusBarHeight = that.data.statusBarHeight;
@@ -174,7 +189,10 @@ Page({
 		var id = options.id;
 		that.setData({
 			id: id
-		})
+		});
+		// setTimeout(function() {
+		// 	that.timeBack();
+		// }, 3000);
 	},
 
 	/**

@@ -37,6 +37,13 @@ Page({
     pageNum: 8,
     list: []
   },
+  lookApply: function (e) {
+    let that = this;
+    var code = e.currentTarget.dataset.code;
+    wx.navigateTo({
+      url: '/pages/technology/task/apply?code=' + code,
+    })
+  },
   confirmOrder: function (e) {
     let that = this;
     var oid = e.currentTarget.dataset.oid,

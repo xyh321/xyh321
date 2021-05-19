@@ -13,6 +13,7 @@
   <view class="cell at_c">
     <view class="title">维修耗时<text class="must">*</text></view>
     <input type="digit" placeholder="请输入维修耗时" bindinput="spendtime"></input>
+    小时
   </view>
   <view class="cell">
     <view class="title">维修描述<text class="must">*</text></view>
@@ -33,11 +34,11 @@
   </view>
   <view class="cell at_c">
     <view class="title">技术员<text class="must">*</text></view>
-    <input type="text" placeholder="请输入报修姓名" bindinput="name"></input>
+    <input type="text" placeholder="请输入报修姓名" bindinput="name" value="{{name}}"></input>
   </view>
   <view class="cell at_c">
     <view class="title">联系方式<text class="must">*</text></view>
-    <input type="number" placeholder="请输入报修电话" maxlength="11" bindinput="mobile"></input>
+    <input type="number" placeholder="请输入报修电话" maxlength="11" bindinput="mobile" value="{{mobile}}"></input>
   </view>
   <view class="cell at_c">
     <view class="title">签到地址<text class="must">*</text></view>

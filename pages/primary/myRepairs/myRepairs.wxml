@@ -79,6 +79,7 @@
 				</block>
 			</view>
 			<view class="but">
+				<view class="fcc" style="margin-right: 20rpx;" bindtap="lookApply" data-code="{{item.code}}" wx:if="{{item.apply_counts!==0}}">查看申领</view>
 				<view class="fcc" style="margin-right: 20rpx;" bindtap="toStep" data-id="{{item.id}}">报修进度</view>
 				<view class="fcc" bindtap="modalinput" wx:if="{{item.status==1}}" data-id="{{item.id}}">撤销报修</view>
 			

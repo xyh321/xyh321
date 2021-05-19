@@ -12,8 +12,9 @@ Page({
 		isShow: true,
 		statusBarHeight: app.globalData.statusBarHeight,
 
-		index: 0,
-		array: ['请选择企业性质', '企业/公司', '教育机构', '售后物业', '其他机构', '酒店餐饮'],
+		companyIndex: null,
+		companyArray: [],
+		companyId: '',
 
 		region: ['省', '市', '区'],
 		// customItem: '全部',
@@ -31,10 +32,17 @@ Page({
 	},
 	//企业性质点击事件
 	bindPickerChange: function(e) {
-		// console.log(e);
+		let that = this;
 		this.setData({
-			index: e.detail.value,
+			companyIndex: e.detail.value,
 		});
+		var list = that.data.companyArray,
+			companyIndex = that.data.companyIndex;
+		if (companyIndex !== null) {
+			that.setData({
+				companyId: list[companyIndex].id
+			})
+		}
 	},
 	//获取负责人
 	personName: function(e) {
@@ -54,7 +62,7 @@ Page({
 	nextStep: function() {
 		let that = this;
 		var companyName = that.data.companyName,
-			index = that.data.index,
+			index = that.data.companyId,
 			personName = that.data.personName,
 			region = that.data.region,
 			changes = that.data.changes;
@@ -88,14 +96,18 @@ Page({
 	},
 
 	//获取企业性质
-	// getUnits: function() {
-	// 	let that = this;
-	// 	_cori.default.request('POST', 'Technician/getUnit', token, {
-			
-	// 	}).then(function(res) {
-			
-	// 	});
-	// },
+	getCompnyNature: function() {
+		let that = this;
+		var token = wx.getStorageSync('token');
+		_cori.default.request('POST', 'User/getCompnyNature', token, {}).then(function(res) {
+			var List = res.data.data;
+			console.log("企业性质", List);
+			that.setData({
+				companyArray: List,
+			})
+
+		});
+	},
 
 	/**
 	 * 生命周期函数--监听页面加载
@@ -107,6 +119,7 @@ Page({
 			titleHeight: statusBarHeight + 6,
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
+		that.getCompnyNature();
 	},
 
 	/**

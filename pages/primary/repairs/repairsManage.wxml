@@ -74,7 +74,7 @@
 				报修姓名
 				<span style="color: #FF2D2D;">*</span>
 			</view>
-			<input type="text" bindinput="name" placeholder="请输入报修姓名" />
+			<input type="text" bindinput="name" placeholder="请输入报修姓名" maxlength="10" />
 		</view>
 		<view class="phoneNumber fc">
 			<view class="start">

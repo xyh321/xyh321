@@ -13,24 +13,24 @@ Page({
 		page: 1,
 		limit: 8,
 
-		length:"",
+		length: "",
 		pageTitle: '我的报修',
 		isShow: false,
 		statusBarHeight: app.globalData.statusBarHeight,
 		//顶部tabs			2是技术员确认接单 6是用户确认完成
 		statusList: [{
-				id: 1,
-				name: '待分配',
-				status: 1
-			}, {
-				id: 2,
-				name: '待确认',
-				status: 2
-			},{
-				id: 7,
-				name: '已完成',
-				status: 7
-			}],
+			id: 1,
+			name: '待分配',
+			status: 1
+		}, {
+			id: 2,
+			name: '待确认',
+			status: 2
+		}, {
+			id: 7,
+			name: '已完成',
+			status: 7
+		}],
 		currentStatus: 1,
 		//报修列表
 		repairList: [],
@@ -41,20 +41,27 @@ Page({
 		//撤销原因
 		cancelReason: '',
 	},
+	lookApply: function (e) {
+		let that = this;
+		var code = e.currentTarget.dataset.code;
+		wx.navigateTo({
+			url: '/pages/technology/task/apply?code=' + code,
+		})
+	},
 	//点击放大
 	previewImg: function (e) {
-	  var index = e.currentTarget.dataset.index;
-	  var images = e.currentTarget.dataset.images;
-	  wx.previewImage({
-	    current: images[index], //当前图片地址
-	    urls: images, //所有要预览的图片的地址集合 数组形式
-	    success: function (res) {},
-	    fail: function (res) {},
-	    complete: function (res) {},
-	  })
+		var index = e.currentTarget.dataset.index;
+		var images = e.currentTarget.dataset.images;
+		wx.previewImage({
+			current: images[index], //当前图片地址
+			urls: images, //所有要预览的图片的地址集合 数组形式
+			success: function (res) {},
+			fail: function (res) {},
+			complete: function (res) {},
+		})
 	},
 	//更改头部状态栏
-	changeStatus: function(e) {
+	changeStatus: function (e) {
 		// console.log(e.currentTarget.dataset.status);
 		let that = this;
 		var token = wx.getStorageSync('token'),
@@ -68,16 +75,16 @@ Page({
 		that.getList(token, limit, status, 1);
 	},
 	//获取报修列表
-	getList: function(token, limit, status, page) {
+	getList: function (token, limit, status, page) {
 		let that = this;
 		_cori.default.request('POST', 'Technician/getRepairsList', token, {
 			page: page,
 			limit: limit,
 			status: status,
-		}).then(function(res) {
+		}).then(function (res) {
 			// console.log(res.data.data.length);
 			that.setData({
-				length:res.data.data.length
+				length: res.data.data.length
 			});
 			var repairList = that.data.repairList,
 				repairList_new = res.data.data;
@@ -96,7 +103,7 @@ Page({
 		});
 	},
 	//撤销工单
-	cancelOrder: function(e) {
+	cancelOrder: function (e) {
 		let that = this;
 		var token = wx.getStorageSync('token'),
 			oid = that.data.oid,
@@ -106,30 +113,48 @@ Page({
 		_cori.default.request('POST', 'Technician/cancelOrder', token, {
 			oid: oid,
 			reason: reason
-		}).then(function(res) {
+		}).then(function (res) {
 			console.log(res);
 			that.getList(token, limit, status, 1);
 		});
 	},
 	//确认完成
-	confirmOrder: function(e) {
+	confirmOrder: function (e) {
 		console.log(e);
 		let that = this;
 		var token = wx.getStorageSync('token'),
 			oid = e.currentTarget.dataset.id,
 			status = that.data.currentStatus,
 			limit = that.data.limit;
-		_cori.default.request('POST', 'Technician/confirmOrder', token, {
-			oid: oid
-		}).then(function(res) {
-			console.log(res);
-			// that.getList(token, limit, status, page);
-			that.getList(token, limit, status, 1);
-		});
+		wx.showModal({
+			title: '提示',
+			content: '确认完成吗？',
+			success(res) {
+				if (res.confirm) {
+					_cori.default.request('POST', 'Technician/confirmOrder', token, {
+						oid: oid
+					}).then(function (res) {
+						console.log(res);
+						if (res.data.code == 200) {
+							that.setData({
+								repairList: []
+							})
+							that.getList(token, limit, status, 1);
+							that.toAppraise(e);
+						} else {
+							wx.showToast({
+								title: '未知错误！',
+								icon: 'none',
+							});
+						}
+					});
+				}
+			}
+		})
 	},
 
 	//to报修进度
-	toStep: function(e) {
+	toStep: function (e) {
 		// console.log(e.target.dataset.id);
 		var id = e.target.dataset.id;
 		wx.navigateTo({
@@ -137,22 +162,20 @@ Page({
 		})
 	},
 	//to评价
-	toAppraise: function(e) {
-		// console.log(e);
+	toAppraise: function (e) {
 		var id = e.currentTarget.dataset.id;
-		// return;
 		wx.navigateTo({
 			url: 'appraise?id=' + id
 		})
 	},
 	//to意见反馈
-	toFeedback: function() {
+	toFeedback: function () {
 		wx.navigateTo({
 			url: '../my/feedback'
 		})
 	},
 	//hiddenmodalput弹出事件  
-	modalinput: function(e) {
+	modalinput: function (e) {
 		// console.log(e);
 		this.setData({
 			hiddenmodalput: !this.data.hiddenmodalput,
@@ -160,21 +183,21 @@ Page({
 		})
 	},
 	//取消
-	cancel: function() {
+	cancel: function () {
 		this.setData({
 			hiddenmodalput: true
 		});
 		console.log("取消");
 	},
 	//确认
-	confirm: function() {
+	confirm: function () {
 		// console.log(e.currentTarget.dataset.status);
 		let that = this;
 		that.setData({
 			hiddenmodalput: true
 		});
 		that.cancelOrder();
-		
+
 		var token = wx.getStorageSync('token'),
 			limit = that.data.limit,
 			status = that.data.currentStatus;
@@ -185,7 +208,7 @@ Page({
 		// console.log("textarea", this.data.cancelReason);
 	},
 	//撤销原因
-	textareas: function(e) {
+	textareas: function (e) {
 		this.setData({
 			cancelReason: e.detail.value
 		});
@@ -193,7 +216,7 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function(options) {
+	onLoad: function (options) {
 		let that = this;
 		var statusBarHeight = that.data.statusBarHeight,
 			token = wx.getStorageSync('token'),
@@ -210,42 +233,42 @@ Page({
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
-	onReady: function() {
+	onReady: function () {
 
 	},
 
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
-	onShow: function() {
+	onShow: function () {
 
 	},
 
 	/**
 	 * 生命周期函数--监听页面隐藏
 	 */
-	onHide: function() {
+	onHide: function () {
 
 	},
 
 	/**
 	 * 生命周期函数--监听页面卸载
 	 */
-	onUnload: function() {
+	onUnload: function () {
 
 	},
 
 	/**
 	 * 页面相关事件处理函数--监听用户下拉动作
 	 */
-	onPullDownRefresh: function() {
+	onPullDownRefresh: function () {
 
 	},
 
 	/**
 	 * 页面上拉触底事件的处理函数
 	 */
-	onReachBottom: function() {
+	onReachBottom: function () {
 		let that = this;
 		var token = wx.getStorageSync('token'),
 			status = that.data.currentStatus,
@@ -261,7 +284,7 @@ Page({
 	/**
 	 * 用户点击右上角分享
 	 */
-	onShareAppMessage: function() {
+	onShareAppMessage: function () {
 
 	}
 })

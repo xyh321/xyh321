@@ -23,7 +23,7 @@ page {
 	width: 100%;
 	color: #707070;
 	padding: 15px 10px;
-	font-size: 27rpx;
+	font-size: 30rpx;
 	z-index: 1;
 	left: 0;
 	box-shadow: #cacaca 0px 0px 2px 1px;
@@ -52,14 +52,14 @@ page {
 }
 
 .cardNumber {
-	font-size: 24rpx;
+	font-size: 26rpx;
 	font-family: PingFang SC;
 	font-weight: bold;
 	color: #202020;
 }
 
 .cardTime {
-	font-size: 20rpx;
+	font-size: 24rpx;
 	font-family: PingFang SC;
 	font-weight: 400;
 	color: #C1C1C1;
@@ -67,7 +67,7 @@ page {
 
 .cardContent {
 	padding: 20rpx;
-	font-size: 20rpx;
+	font-size: 24rpx;
 	font-family: PingFang SC;
 	font-weight: 400;
 	line-height: 30rpx;
@@ -85,9 +85,10 @@ page {
 .photo,
 .technoName,
 .technoPhone {
-	margin-top: 20rpx;
+	margin-top: 30rpx;
 	display: flex;
 	align-items: flex-start;
+	font-size: 24rpx;
 }
 
 .cardContent span,
@@ -117,11 +118,11 @@ page {
 }
 
 .but view {
-	width: 144rpx;
-	height: 52rpx;
+	width: 150rpx;
+	height: 70rpx;
 	background-color: #0099FF;
 	border-radius: 8rpx;
-	font-size: 20rpx;
+	font-size: 24rpx;
 	font-family: PingFang SC;
 	font-weight: 400;
 	line-height: 28rpx;
@@ -134,11 +135,11 @@ textarea {
 }
 
 .but button {
-	width: 144rpx !important;
-	height: 52rpx;
+	width: 150rpx !important;
+	height: 70rpx;
 	background-color: #0099FF;
 	border-radius: 8rpx;
-	font-size: 20rpx;
+	font-size: 24rpx;
 	font-family: PingFang SC;
 	font-weight: 400;
 	line-height: 28rpx;
