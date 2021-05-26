@@ -3,7 +3,7 @@
 
 <view style="margin: {{titleHeight1}}px 0 80px 0;">
 	<view class="repairsManage">
-		<view class="shopImg">
+		<view class="shopImg" wx:if="{{messageList.image}}">
 			<image src="{{'https://bxs.zolclub.com'+messageList.image}}" mode="widthFix" style="width: 750rpx;"></image>
 		</view>
 		<view class="equipmentMsg">
@@ -150,7 +150,7 @@
 			</radio-group>
 		</view>
 		<view class="uploadImg">
-			<view class="upImg">上传故障图片 <span style="color: #FF2D2D;">*</span></view>
+			<view class="upImg">上传故障图片 </view>
 
 			<view class="flex jc_s at_s fw_w mt10" style="width: 100%;">
 				<view wx:for="{{imgArr}}" wx:key="index" class="evaluateImg">

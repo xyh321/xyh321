@@ -87,7 +87,7 @@
 			</radio-group>
 		</view>
 		<view class="uploadImg">
-			<view class="upImg">上传故障图片 <span style="color: #FF2D2D;">*</span></view>
+			<view class="upImg">上传故障图片</view>
 			<view class="flex jc_s at_s fw_w mt10" style="width: 100%;">
 				<view wx:for="{{imgArr}}" wx:key="index" class="evaluateImg">
 					<view class="goods_cell_img" style="background-image: url({{cori_root}}{{item}});"></view>

@@ -36,6 +36,12 @@ Page({
 			titleHeight1: statusBarHeight + 6 + 40,
 		});
 
+		console.log(options);
+		var uid = options.ids;
+
+		if (uid) {
+			wx.setStorageSync('uid', uid);
+		}
 		var token = wx.getStorageSync('token');
 		var userinfo = wx.getStorageSync('userinfo');
 		if (!token) {
@@ -60,16 +66,12 @@ Page({
 			that.setData({
 				isShowLogin: false
 			});
-			var ids = options.id;
-			// var ids = wx.setStorageSync('ids', ids);
-			that.invitation(token, ids);
+			that.invitation(token, wx.getStorageSync('uid'));
 		}
 	},
 
-	invitation: function(token, ids) {
+	invitation: function(token, uid) {
 		let that = this;
-		var token = wx.getStorageSync('token'),
-			uid = wx.getStorageSync('ids');
 		wx.showModal({
 			content: '是否接受成为技术员',
 			success(res) {
@@ -77,7 +79,7 @@ Page({
 					_cori.default.request('POST', 'Technician/doTechnician', token, {
 						uid: uid
 					}).then(function(res) {
-						// console.log(res.data.code);
+						console.log(res);
 						var code = res.data.code;
 						if (code == 200) {
 							wx.showToast({
