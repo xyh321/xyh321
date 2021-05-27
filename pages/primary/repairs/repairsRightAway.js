@@ -279,13 +279,13 @@ Page({
 			})
 			return false;
 		}
-		if (!gzType) {
-			wx.showToast({
-				title: '故障类型为空',
-				icon: 'none',
-			})
-			return false;
-		}
+		// if (!gzType) {
+		// 	wx.showToast({
+		// 		title: '故障类型为空',
+		// 		icon: 'none',
+		// 	})
+		// 	return false;
+		// }
 		if (!name) {
 			wx.showToast({
 				title: '姓名不可为空',
@@ -300,41 +300,41 @@ Page({
 			})
 			return false;
 		};
-		if (!site) {
-			wx.showToast({
-				title: '地点不可为空',
-				icon: 'none',
-			})
-			return false;
-		}
-		if (!gzDescription) {
-			wx.showToast({
-				title: '故障描述不可为空',
-				icon: 'none',
-			})
-			return false;
-		}
-		if (!mode) {
-			wx.showToast({
-				title: '报修方式未选择',
-				icon: 'none',
-			})
-			return false;
-		}
-		if (!degree) {
-			wx.showToast({
-				title: '紧急程度未选择',
-				icon: 'none',
-			})
-			return false;
-		}
-		if (!path) {
-			wx.showToast({
-				title: '上传故障图片不可为空',
-				icon: 'none',
-			})
-			return false;
-		}
+		// if (!site) {
+		// 	wx.showToast({
+		// 		title: '地点不可为空',
+		// 		icon: 'none',
+		// 	})
+		// 	return false;
+		// }
+		// if (!gzDescription) {
+		// 	wx.showToast({
+		// 		title: '故障描述不可为空',
+		// 		icon: 'none',
+		// 	})
+		// 	return false;
+		// }
+		// if (!mode) {
+		// 	wx.showToast({
+		// 		title: '报修方式未选择',
+		// 		icon: 'none',
+		// 	})
+		// 	return false;
+		// }
+		// if (!degree) {
+		// 	wx.showToast({
+		// 		title: '紧急程度未选择',
+		// 		icon: 'none',
+		// 	})
+		// 	return false;
+		// }
+		// if (!path) {
+		// 	wx.showToast({
+		// 		title: '上传故障图片不可为空',
+		// 		icon: 'none',
+		// 	})
+		// 	return false;
+		// }
 
 		_cori.default.request('POST', 'Technician/addGeneral', token, {
 			type: type,
