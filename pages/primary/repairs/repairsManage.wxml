@@ -93,7 +93,7 @@
 			</picker>
 		</view>
 
-		<!-- <view class="apartment fc">
+		<view class="apartment fc">
 			<view class="start">
 				报修部门
 				<span style="color: #FF2D2D;">*</span>
@@ -106,7 +106,7 @@
 						mode="widthFix"></image>
 				</view>
 			</picker>
-		</view> -->
+		</view>
 
 		<view class="type fc">
 			<view class="start">
