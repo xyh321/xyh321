@@ -46,10 +46,11 @@ Page({
 		imgArr: [],
 
 		cUnit: null,
-		cSection: null
+		cSection: null,
+		site: ''
 	},
 
-	getUserInfo: function (e) {
+	getUserInfo: function(e) {
 		let that = this;
 		var userinfo = wx.getStorageSync('userinfo');
 		console.log('userinfo', userinfo);
@@ -63,7 +64,7 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad: function (options) {
+	onLoad: function(options) {
 		let that = this;
 		var statusBarHeight = that.data.statusBarHeight;
 		that.setData({
@@ -109,16 +110,16 @@ Page({
 	},
 
 	//获取报修单位,部门
-	getUnits: function (token, uid) {
+	getUnits: function(token, uid) {
 		let that = this;
 		_cori.default.request('POST', 'Technician/getUnit', token, {
 			uid: uid
-		}).then(function (res) {
+		}).then(function(res) {
 			console.log('单位，部门', res.data.data);
 			var unitArr = [],
 				listArr = res.data.data;
 
-			listArr.forEach(function (item, index) {
+			listArr.forEach(function(item, index) {
 				unitArr.push(item.name);
 				// apartArr.push(item.section);
 			});
@@ -135,15 +136,15 @@ Page({
 	},
 
 	//获取故障类型
-	getGzType: function (token, uid) {
+	getGzType: function(token, uid) {
 		let that = this;
 		_cori.default.request('POST', 'Technician/getGzType', token, {
 			uid: uid
-		}).then(function (res) {
+		}).then(function(res) {
 			console.log('getGzType', res.data.data);
 			var gzArray = [],
 				newsArray = res.data.data;
-			newsArray.forEach(function (item, index) {
+			newsArray.forEach(function(item, index) {
 				gzArray.push(item);
 				// apartArr.push(item.section);
 			});
@@ -154,9 +155,18 @@ Page({
 			});
 		});
 	},
+	// 获取报修地点
+	repairSite:function(e){
+		let that = this;
+		// console.log(e.detail.value);
+		var site = e.detail.value;
+		that.setData({
+			site:site
+		})
+	},
 
 	//报修单位点击事件
-	bindUnit: function (e) {
+	bindUnit: function(e) {
 		console.log(e);
 		let that = this;
 		var listArr = that.data.listArr,
@@ -174,7 +184,7 @@ Page({
 	},
 
 	//报修部门点击事件
-	apartments: function (e) {
+	apartments: function(e) {
 		// console.log(e);
 		let that = this;
 		var apartIndex = e.detail.value,
@@ -190,7 +200,7 @@ Page({
 	},
 
 	//故障类型点击事件
-	gzTypes: function (e) {
+	gzTypes: function(e) {
 		console.log(e);
 		let that = this;
 		var gzArray = that.data.gzArray,
@@ -204,11 +214,11 @@ Page({
 	},
 
 	//获取设备报修信息
-	getEqList: function (token, facilityId) {
+	getEqList: function(token, facilityId) {
 		let that = this;
 		_cori.default.request('POST', 'Technician/getFacility', token, {
 			uid: facilityId
-		}).then(function (res) {
+		}).then(function(res) {
 			console.log('getFacility', res.data.data);
 			// ********************
 			var cUnit = res.data.data.unit,
@@ -223,11 +233,18 @@ Page({
 			}
 			var apartArray = listArr[unitIndex].section,
 				nlen = apartArray.length;
-			for (let n = 0; n < nlen; n++) {
-				if (apartArray[n].id = cSection) {
-					var apartIndex = n;
+			if (cSection) {
+				for (let n = 0; n < nlen; n++) {
+					if (apartArray[n].id = cSection) {
+						var apartIndex = n;
+					}
 				}
+				var apartment = cSection;
+			} else {
+				var apartIndex = null;
+				var apartment = 0;
 			}
+
 			that.setData({
 				messageList: res.data.data,
 				site: res.data.data.site,
@@ -235,16 +252,18 @@ Page({
 				apartArray: apartArray,
 				apartIndex: apartIndex,
 				unit: cUnit,
-				apartment: cSection
+				apartment: apartment
 			})
+			console.log('apartIndex', apartIndex);
 			console.log('unit', that.data.unit)
 			console.log('section', that.data.section)
+			console.log('cSection', cSection)
 			// ********************
 		});
 	},
 
 	//图片上传
-	oneImgUpload: function (e) {
+	oneImgUpload: function(e) {
 		let that = this;
 		var coriander_requset = that.data.coriander_requset,
 			token = wx.getStorageSync('token'),
@@ -253,7 +272,7 @@ Page({
 			count: 1,
 			sizeType: ['original', 'compressed'],
 			sourceType: ['album', 'camera'],
-			success: function (res) {
+			success: function(res) {
 				console.log('选择图片', res);
 				var imgs = res.tempFilePaths[0];
 				wx.uploadFile({
@@ -276,7 +295,7 @@ Page({
 		})
 	},
 	//图片上传删除
-	shanchu: function (e) {
+	shanchu: function(e) {
 		let that = this;
 		var imgArr = that.data.imgArr,
 			index = e.currentTarget.dataset.index;
@@ -286,7 +305,7 @@ Page({
 		});
 	},
 	//确认提交
-	submit: function () {
+	submit: function() {
 		let that = this;
 		var token = wx.getStorageSync('token'),
 			uid = wx.getStorageSync('uid'),
@@ -305,6 +324,10 @@ Page({
 			mode = that.data.repairsType,
 			degree = that.data.urgent,
 			path = that.data.imgArr;
+		if (!site) {
+			
+			return false;
+		};
 		if (!name) {
 			wx.showToast({
 				title: '姓名不可为空',
@@ -383,7 +406,7 @@ Page({
 			degree: degree,
 			facilityId: facilityId,
 			path: path,
-		}).then(function (res) {
+		}).then(function(res) {
 			console.log(res);
 
 			if (res.data.code == 200) {
@@ -391,7 +414,7 @@ Page({
 					title: '提交成功！',
 					icon: 'none',
 				});
-				setTimeout(function () {
+				setTimeout(function() {
 					wx.navigateTo({
 						url: '../myRepairs/myRepairs',
 					})
@@ -401,22 +424,22 @@ Page({
 		});
 	},
 
-	name: function (e) {
+	name: function(e) {
 		this.setData({
 			name: e.detail.value
 		})
 	},
-	phoneNumber: function (e) {
+	phoneNumber: function(e) {
 		this.setData({
 			phoneNumber: e.detail.value
 		})
 	},
-	describe: function (e) {
+	describe: function(e) {
 		this.setData({
 			describe: e.detail.value
 		})
 	},
-	repairsType: function (e) {
+	repairsType: function(e) {
 		var a = e.detail.value;
 		var b = Number(a);
 		// console.log(typeof (b));
@@ -424,13 +447,13 @@ Page({
 			repairsType: b
 		})
 	},
-	repairsTypeCkecked: function () {
+	repairsTypeCkecked: function() {
 		var a = 1;
 		this.setData({
 			repairsType: a
 		})
 	},
-	urgent: function (e) {
+	urgent: function(e) {
 		var a = e.detail.value;
 		var b = Number(a);
 		// console.log(typeof (b));
@@ -439,7 +462,7 @@ Page({
 		})
 	},
 
-	urgentChecked: function () {
+	urgentChecked: function() {
 		var a = 1;
 		this.setData({
 			urgent: a
@@ -448,49 +471,49 @@ Page({
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
-	onReady: function () {
+	onReady: function() {
 
 	},
 
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
-	onShow: function () {
+	onShow: function() {
 
 	},
 
 	/**
 	 * 生命周期函数--监听页面隐藏
 	 */
-	onHide: function () {
+	onHide: function() {
 
 	},
 
 	/**
 	 * 生命周期函数--监听页面卸载
 	 */
-	onUnload: function () {
+	onUnload: function() {
 
 	},
 
 	/**
 	 * 页面相关事件处理函数--监听用户下拉动作
 	 */
-	onPullDownRefresh: function () {
+	onPullDownRefresh: function() {
 
 	},
 
 	/**
 	 * 页面上拉触底事件的处理函数
 	 */
-	onReachBottom: function () {
+	onReachBottom: function() {
 
 	},
 
 	/**
 	 * 用户点击右上角分享
 	 */
-	onShareAppMessage: function () {
+	onShareAppMessage: function() {
 
 	}
 })

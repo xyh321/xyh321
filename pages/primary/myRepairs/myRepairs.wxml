@@ -50,7 +50,7 @@
 					所属部门: <span>{{item.section}}</span>
 				</view>
 				<view class="address">
-					报修地点: <span>{{item.site}}</span>
+					报修地点: <span>{{item.site?item.site:null}}</span>
 				</view>
 				<view class="type">
 					故障类型: <span>{{item.gzType}}</span>

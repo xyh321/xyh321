@@ -9,38 +9,40 @@ Page({
 		pageTitle: '博学思资产报修',
 		isShow: false,
 		statusBarHeight: app.globalData.statusBarHeight,
-		
+
 		//轮播图列表
 		bannerList: [],
 		//企业展示列表
 		companyList: [{
-				image: '../../../icons/test.png',
-				title: '山东界民科技'
-			}, {
-				image: '../../../icons/test.png',
-				title: '山东界民科技'
-			}, {
-				image: '../../../icons/test.png',
-				title: '山东界民科技'
-			}, {
-				image: '../../../icons/test.png',
-				title: '山东界民科技'
-			},{
-				image: '../../../icons/test.png',
-				title: '山东界民科技'
-			},{
-				image: '../../../icons/test.png',
-				title: '山东界民科技'
-			}
-		],
+			image: '../../../icons/test.png',
+			title: '山东界民科技'
+		}, {
+			image: '../../../icons/test.png',
+			title: '山东界民科技'
+		}, {
+			image: '../../../icons/test.png',
+			title: '山东界民科技'
+		}, {
+			image: '../../../icons/test.png',
+			title: '山东界民科技'
+		}, {
+			image: '../../../icons/test.png',
+			title: '山东界民科技'
+		}, {
+			image: '../../../icons/test.png',
+			title: '山东界民科技'
+		}],
 		//分组id
 		group_id: "",
+		isShowLogin: false,
+
 	},
 
 	onLoad: function(options) {
-	
 		let that = this;
 		var statusBarHeight = that.data.statusBarHeight;
+		var token = wx.getStorageSync('token');
+
 		that.setData({
 			titleHeight: statusBarHeight + 6,
 			titleHeight1: statusBarHeight + 6 + 40,
@@ -48,6 +50,11 @@ Page({
 		that.getBannerList();
 		that.getCompanyList();
 		that.getUserMsg();
+		if (token) {
+			that.setData({
+				isShowLogin: false,
+			})
+		}
 	},
 
 	//企业注册
@@ -56,10 +63,37 @@ Page({
 			url: 'completeRegister'
 		})
 	},
+	getUserInfo: function(e) {
+
+	},
 	//管理员弹框事件
 	alert: function() {
 		let that = this;
-		var groupId = that.data.group_id;
+		var groupId = that.data.group_id,
+			token = wx.getStorageSync('token');
+		if (!token) {
+			wx.showModal({
+				title: '温馨提示',
+				content: '请您先登录！',
+				success(res) {
+					if (res.confirm) {
+						// console.log('用户点击确定')
+						var userinfo = wx.getStorageSync('userinfo');
+						console.log('userinfo', userinfo);
+						if (!userinfo) {
+							that.setData({
+								isShowLogin: true
+							})
+						}
+
+					} else if (res.cancel) {
+						// console.log('用户点击取消')
+					}
+				}
+			})
+			return;
+		}
+
 		// console.log(groupId);
 		if (groupId == 3) {
 			wx.navigateTo({
@@ -79,6 +113,7 @@ Page({
 			})
 		}
 	},
+
 
 	//获取轮播图列表
 	getBannerList: function() {

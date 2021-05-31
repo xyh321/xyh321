@@ -3,7 +3,8 @@
   <view class="login pr flex jc_c fd_c at_c">
     <image class="pa image_icon" src="../resource/keai.png" mode="widthFix"></image>
     <view class="flex jc_c at_c fd_c">
-      <view class="fb">报修云小程序</view>
+      <view class="fb">博学思</view>
+	  <view class="fb">资产报修小程序</view>
       <view class="tips mt20">申请获取以下权限</view>
       <view class="tips" wx:if="{{step==1}}">获得你的公开信息（昵称、头像等）</view>
       <view class="tips" wx:if="{{step==2}}">获得你的手机号</view>
