@@ -16,8 +16,8 @@ App({
   globalData: {
     userInfo: null,
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
-    coriander_requset: 'https://bxs.zolclub.com/api/',
-    cori_root: 'https://bxs.zolclub.com/',
+    coriander_requset: 'https://www.bxsrj.com/api/',
+    cori_root: 'https://www.bxsrj.com/',
     key: '6RLBZ-ZI5LR-7QQW5-WIGZL-VAKKH-MGBC4'
   }
 })
