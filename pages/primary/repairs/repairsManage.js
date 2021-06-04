@@ -9,7 +9,8 @@ Page({
 		pageType: 1,
 		// pageActive: 2,
 		pageTitle: '设备报修管理',
-		isShow: true,
+		isShow: false,
+    isHome: true,
 		statusBarHeight: app.globalData.statusBarHeight,
 		//query获取
 		uid: "",

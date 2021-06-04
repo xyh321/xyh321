@@ -1,4 +1,4 @@
-<component-title is-show="{{isShow}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
+<component-title is-show="{{isShow}}" is-home="{{isHome}}" page-title="{{pageTitle}}" title-height="{{titleHeight}}"></component-title>
 <component-login is-show-login="{{isShowLogin}}" bind:changeNaviIndex="onLoad"></component-login>
 
 <view style="margin: {{titleHeight1}}px 0 80px 0;">

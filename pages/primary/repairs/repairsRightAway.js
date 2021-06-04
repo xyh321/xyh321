@@ -9,7 +9,8 @@ Page({
 		pageType: 1,
 		// pageActive: 2,
 		pageTitle: '立刻报修',
-		isShow: true,
+		isShow: false,
+    isHome: true,
 		statusBarHeight: app.globalData.statusBarHeight,
 
 		index: 0,
