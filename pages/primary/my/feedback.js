@@ -60,12 +60,10 @@ Page({
 			mobile: phone,
 		}).then(function(res) {
 			console.log(res);
-			if (res.data.code == 200) {
 				wx.showToast({
-					title: '提交成功!',
+					title: res.data.msg + '!',
 					icon: 'none'
 				})
-			}
 		});
 	},
 
