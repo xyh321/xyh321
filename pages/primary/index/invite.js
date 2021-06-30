@@ -81,6 +81,7 @@ Page({
 					}).then(function(res) {
 						console.log(res);
 						var code = res.data.code;
+
 						if (code == 200) {
 							wx.showToast({
 								title: '绑定成功!',
@@ -102,6 +103,21 @@ Page({
 								})
 							}, 1000);
 						}
+
+						// wx.showToast({
+						// 	title: res.data.msg + "!",
+						// 	icon:'none',
+						// 	duration: 3000,
+						// 	mask: true,
+						// 	success:function(){
+						// 		setTimeout(function() {
+						// 			wx.navigateTo({
+						// 				url: 'index'
+						// 			})
+						// 		}, 1000);
+						// 	}
+						// })
+				
 					});
 				} else if (res.cancel) {
 					console.log('用户点击取消')
